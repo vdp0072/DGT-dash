@@ -2,13 +2,11 @@ import sqlite3
 import os
 from passlib.context import CryptContext
 
-DB_PATH = "d:/DGT_dash/dgt.db"
+DB_PATH = "dgt.db"
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 def init_db():
-    if os.path.exists(DB_PATH):
-        print(f"Database already exists at {DB_PATH}")
-        return
+    print(f"Initializing database at {os.path.abspath(DB_PATH)}")
 
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()

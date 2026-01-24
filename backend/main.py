@@ -3,10 +3,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, JSONResponse
 from backend import auth, search, ingest
+from backend.init_db import init_db
 import time
 import os
 
 app = FastAPI(title="DGT Data Portal")
+
+@app.on_event("startup")
+async def startup_event():
+    init_db()
 
 # CORS
 origins = ["*"] # Allow all for easier deployment, or customize as needed
@@ -51,4 +56,3 @@ async def get_style():
 async def get_app():
     with open("app.js", "r", encoding="utf-8") as f:
         return HTMLResponse(content=f.read(), media_type="application/javascript")
-
