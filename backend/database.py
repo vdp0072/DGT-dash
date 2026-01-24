@@ -10,6 +10,10 @@ DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./dgt.db")
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
+# Mask URL for safe logging
+masked_url = DATABASE_URL.split("@")[-1] if "@" in DATABASE_URL else DATABASE_URL
+print(f"🔗 Database connection: {masked_url}")
+
 connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
 
 engine = create_engine(DATABASE_URL, connect_args=connect_args, pool_pre_ping=True)
@@ -23,3 +27,5 @@ def get_db():
     finally:
         db.close()
 
+def is_sqlite():
+    return DATABASE_URL.startswith("sqlite")

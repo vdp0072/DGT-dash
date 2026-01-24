@@ -25,7 +25,7 @@ async def search_records(
 ):
     # Log access
     db.execute(
-        text("INSERT INTO access_logs (user_id, action, details) VALUES ((SELECT id FROM users WHERE username=:u), :a, :d)"),
+        text("INSERT INTO access_logs (username, action, details) VALUES (:u, :a, :d)"),
         {"u": current_user.username, "a": "SEARCH", "d": f"q={q}, city={city}, const={constituency}"}
     )
     db.commit()

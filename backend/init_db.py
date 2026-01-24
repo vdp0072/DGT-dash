@@ -6,11 +6,10 @@ def get_password_hash(password):
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
 def init_db():
-    print(f"Initializing database...")
+    print(f"Initializing database schema...")
 
     with engine.connect() as conn:
         # Users Table
-        # Using VARCHAR with length for broader compatibility though TEXT works in most
         conn.execute(text('''
         CREATE TABLE IF NOT EXISTS users (
             id SERIAL PRIMARY KEY,
@@ -21,19 +20,18 @@ def init_db():
         )
         '''))
 
-        # Ingestion Logs Table
+        # Ingestion Logs Table - now linked by username for robustness
         conn.execute(text('''
         CREATE TABLE IF NOT EXISTS ingestion_logs (
             id SERIAL PRIMARY KEY,
             filename TEXT NOT NULL,
-            uploaded_by_user_id INTEGER NOT NULL,
+            uploaded_by_username TEXT NOT NULL,
             upload_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             status TEXT,
             total_rows INTEGER DEFAULT 0,
             inserted_rows INTEGER DEFAULT 0,
             rejected_rows INTEGER DEFAULT 0,
-            rejection_reason TEXT,
-            FOREIGN KEY(uploaded_by_user_id) REFERENCES users(id)
+            rejection_reason TEXT
         )
         '''))
 
@@ -52,32 +50,28 @@ def init_db():
             misc TEXT,
             source_file_id INTEGER,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY(source_file_id) REFERENCES ingestion_logs(id),
             UNIQUE(name, phone)
         )
         '''))
         
-        # Access Logs Table
+        # Access Logs Table - now linked by username for robustness
         conn.execute(text('''
         CREATE TABLE IF NOT EXISTS access_logs (
             id SERIAL PRIMARY KEY,
-            user_id INTEGER NOT NULL,
+            username TEXT NOT NULL,
             action TEXT NOT NULL,
             details TEXT,
-            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY(user_id) REFERENCES users(id)
+            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
         '''))
 
         # Indexes
-        # SQLite IF NOT EXISTS is fine. Postgres also supports IF NOT EXISTS for indexes since 9.5
         conn.execute(text("CREATE INDEX IF NOT EXISTS idx_records_search ON records(name, city, constituency)"))
         conn.execute(text("CREATE INDEX IF NOT EXISTS idx_records_phone ON records(phone)"))
 
         # Seed Admin User
         admin_password = get_password_hash("admin123")
         try:
-            # Check if admin exists first to be safe
             result = conn.execute(text("SELECT 1 FROM users WHERE username = 'admin'")).fetchone()
             if not result:
                 conn.execute(text("INSERT INTO users (username, password_hash, role) VALUES (:u, :p, :r)"),
@@ -90,7 +84,7 @@ def init_db():
             print(f"Seeding error: {e}")
 
         conn.commit()
-    print("Database initialized successfully.")
+    print("Database initialization complete.")
 
 if __name__ == "__main__":
     init_db()

@@ -1,0 +1,488 @@
+2026-01-24T16:07:40.000000000Z [inf]  Starting Container
+2026-01-24T16:07:42.344268292Z [err]  INFO:     Started server process [1]
+2026-01-24T16:07:42.344273812Z [err]  INFO:     Waiting for application startup.
+2026-01-24T16:07:42.344276372Z [inf]  Initializing database...
+2026-01-24T16:07:42.344279212Z [inf]  Seeded admin user (admin/admin123)
+2026-01-24T16:07:42.344281882Z [inf]  Database initialized successfully.
+2026-01-24T16:07:42.344284922Z [err]  INFO:     Application startup complete.
+2026-01-24T16:07:42.344287052Z [err]  INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-01-24T16:08:08.000000000Z [inf]  Starting Container
+2026-01-24T16:08:09.653150305Z [inf]  The files belonging to this database system will be owned by user "postgres".
+2026-01-24T16:08:09.653153224Z [inf]  This user must also own the server process.
+2026-01-24T16:08:09.653156724Z [inf]  
+2026-01-24T16:08:09.653159904Z [inf]  The database cluster will be initialized with locale "en_US.utf8".
+2026-01-24T16:08:09.653164154Z [inf]  The default database encoding has accordingly been set to "UTF8".
+2026-01-24T16:08:09.653167354Z [inf]  The default text search configuration will be set to "english".
+2026-01-24T16:08:09.653170574Z [inf]  
+2026-01-24T16:08:09.653173494Z [inf]  Data page checksums are disabled.
+2026-01-24T16:08:09.653176884Z [inf]  
+2026-01-24T16:08:09.653180144Z [inf]  fixing permissions on existing directory /var/lib/postgresql/data/pgdata ... ok
+2026-01-24T16:08:09.653183014Z [inf]  creating subdirectories ... ok
+2026-01-24T16:08:09.653186304Z [inf]  selecting dynamic shared memory implementation ... posix
+2026-01-24T16:08:09.653189254Z [inf]  selecting default "max_connections" ... 100
+2026-01-24T16:08:09.653192244Z [inf]  selecting default "shared_buffers" ... 128MB
+2026-01-24T16:08:09.653196274Z [inf]  selecting default time zone ... Etc/UTC
+2026-01-24T16:08:09.653199524Z [inf]  creating configuration files ... ok
+2026-01-24T16:08:09.653203293Z [inf]  running bootstrap script ... ok
+2026-01-24T16:08:09.653207683Z [inf]  performing post-bootstrap initialization ... ok
+2026-01-24T16:08:10.214893663Z [inf]  syncing data to disk ... ok
+2026-01-24T16:08:10.214897933Z [inf]  
+2026-01-24T16:08:10.214901433Z [inf]  
+2026-01-24T16:08:10.214904723Z [inf]  Success. You can now start the database server using:
+2026-01-24T16:08:10.214908003Z [inf]  
+2026-01-24T16:08:10.214911293Z [inf]      pg_ctl -D /var/lib/postgresql/data/pgdata -l logfile start
+2026-01-24T16:08:10.214915463Z [inf]  
+2026-01-24T16:08:10.214918523Z [err]  initdb: warning: enabling "trust" authentication for local connections
+2026-01-24T16:08:10.214921943Z [err]  initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+2026-01-24T16:08:10.255865819Z [inf]  waiting for server to start....2026-01-24 16:08:10.253 UTC [46] LOG:  starting PostgreSQL 17.7 (Debian 17.7-3.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-01-24T16:08:10.255868599Z [inf]  2026-01-24 16:08:10.254 UTC [46] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-01-24T16:08:10.262428044Z [inf]  2026-01-24 16:08:10.260 UTC [49] LOG:  database system was shut down at 2026-01-24 16:08:09 UTC
+2026-01-24T16:08:10.267470080Z [inf]  2026-01-24 16:08:10.265 UTC [46] LOG:  database system is ready to accept connections
+2026-01-24T16:08:10.337736451Z [inf]   done
+2026-01-24T16:08:10.337741651Z [inf]  server started
+2026-01-24T16:08:10.668030661Z [inf]  CREATE DATABASE
+2026-01-24T16:08:10.668034741Z [inf]  
+2026-01-24T16:08:10.668038361Z [inf]  
+2026-01-24T16:08:10.668042871Z [inf]  /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init-ssl.sh
+2026-01-24T16:08:10.668047571Z [err]  ..+.........+...+..+.+...+.................+..................+...............
+2026-01-24T16:08:10.668052241Z [err]  +......+++++++++
+2026-01-24T16:08:10.668056351Z [err]  +++++++++++
+2026-01-24T16:08:10.671142347Z [err]  +++++++++++
+2026-01-24T16:08:10.671146047Z [err]  ++++++++*..+....+...+
+2026-01-24T16:08:10.671149537Z [err]  ......+..+...+.+...........++++
+2026-01-24T16:08:10.671152777Z [err]  ++++++++++
+2026-01-24T16:08:10.671156117Z [err]  +++++++++++++
+2026-01-24T16:08:10.674159055Z [err]  ++++++++++
+2026-01-24T16:08:10.674162274Z [err]  ++*.........
+2026-01-24T16:08:10.674165964Z [err]  +..+...+++++
+2026-01-24T16:08:10.674170044Z [err]  +
+2026-01-24T16:08:10.674173624Z [err]  ....+......+.........+....+...............+..+....+++++
+2026-01-24T16:08:10.676273491Z [err]  ++++++++++
+2026-01-24T16:08:10.676276461Z [err]  ++++++++++
+2026-01-24T16:08:10.676283171Z [err]  +++++++++++
+2026-01-24T16:08:10.676286191Z [err]  +++*.+...+.....+.......+.......................
+2026-01-24T16:08:10.679270019Z [err]  +...+.............+...............+
+2026-01-24T16:08:10.679277109Z [err]  .....+.+...+..+.++++++
+2026-01-24T16:08:10.679281729Z [err]  ++++++++++
+2026-01-24T16:08:10.679286209Z [err]  ++++++++++
+2026-01-24T16:08:10.679290159Z [err]  ++++++++++
+2026-01-24T16:08:10.681944614Z [err]  +++*........+
+2026-01-24T16:08:10.681947464Z [err]  ...+.........
+2026-01-24T16:08:10.681972353Z [err]  ...+..+.+.....
+2026-01-24T16:08:10.681975383Z [err]  +....+........
+2026-01-24T16:08:10.683760417Z [err]  +.........+....
+2026-01-24T16:08:10.683763407Z [err]  .....+.......+..
+2026-01-24T16:08:10.683766367Z [err]  +.......+........
+2026-01-24T16:08:10.683768897Z [err]  .+.....+.+......+..+
+2026-01-24T16:08:10.683771567Z [err]  ............
+2026-01-24T16:08:10.685883373Z [err]  ....+......
+2026-01-24T16:08:10.685887112Z [err]  ........+...
+2026-01-24T16:08:10.685890922Z [err]  .......+...+..+
+2026-01-24T16:08:10.685895442Z [err]  ............+.+...
+2026-01-24T16:08:10.686840393Z [err]  .........+....
+2026-01-24T16:08:10.686843253Z [err]  ....+....+...
+2026-01-24T16:08:10.686845553Z [err]  ......+..+...
+2026-01-24T16:08:10.686847883Z [err]  ....+........
+2026-01-24T16:08:10.686850123Z [err]  ....++++++
+2026-01-24T16:08:10.686854903Z [err]  -----
+2026-01-24T16:08:10.690137716Z [err]  ......+........+.......+........+.........+...+......+......+.........+....+
+2026-01-24T16:08:10.690140756Z [err]  ...+..+++++++++
+2026-01-24T16:08:10.690144056Z [err]  ++++++++++
+2026-01-24T16:08:10.690147036Z [err]  ++++++++++
+2026-01-24T16:08:10.691546427Z [err]  ++++++++++*..+
+2026-01-24T16:08:10.691553407Z [err]  ...++++++++++
+2026-01-24T16:08:10.691555906Z [err]  ++++++++++
+2026-01-24T16:08:10.691558406Z [err]  ++++++++++
+2026-01-24T16:08:10.691561506Z [err]  +++++++++*....+
+2026-01-24T16:08:10.693435467Z [err]  .........+.....+...+...+
+2026-01-24T16:08:10.693439817Z [err]  ...+......+....+..+.......
+2026-01-24T16:08:10.693443377Z [err]  ..+...+...+....+...
+2026-01-24T16:08:10.693446487Z [err]  ++++++
+2026-01-24T16:08:10.695931126Z [err]  ....+...+.+...+...+.....+...+....+............+
+2026-01-24T16:08:10.695935566Z [err]  .........+...........+.+..+......+.+.........+.....+
+2026-01-24T16:08:10.695939126Z [err]  ..........+......+...+......+.........+.....+...+....+...+
+2026-01-24T16:08:10.695943236Z [err]  ...+........+.......+........+.......+.....+...+....+..++
+2026-01-24T16:08:10.695947275Z [err]  ++++++++++
+2026-01-24T16:08:10.698495473Z [err]  ++++++++++
+2026-01-24T16:08:10.698499813Z [err]  ++++++++++
+2026-01-24T16:08:10.698503923Z [err]  +++++++*.+.....................+
+2026-01-24T16:08:10.698507883Z [err]  .++++++++++
+2026-01-24T16:08:10.700149449Z [err]  ++++++++++
+2026-01-24T16:08:10.700153399Z [err]  ++++++++++
+2026-01-24T16:08:10.700156678Z [err]  +++++++++*.
+2026-01-24T16:08:10.700167948Z [err]  +..+...+...+.+...
+2026-01-24T16:08:10.700170388Z [err]  +.....+................+..+...
+2026-01-24T16:08:10.701774636Z [err]  +............+...+...
+2026-01-24T16:08:10.701779336Z [err]  .+............
+2026-01-24T16:08:10.701783026Z [err]  ...+...+..+.+....
+2026-01-24T16:08:10.701786296Z [err]  .......+......+...
+2026-01-24T16:08:10.703783584Z [err]  +....+......+.....+....
+2026-01-24T16:08:10.703788144Z [err]  ...+.........+.......
+2026-01-24T16:08:10.703791804Z [err]  .......+......
+2026-01-24T16:08:10.703795524Z [err]  ...+...........
+2026-01-24T16:08:10.706389440Z [err]  .+......+.........
+2026-01-24T16:08:10.706393440Z [err]  ......+....+...+.....+
+2026-01-24T16:08:10.706396090Z [err]  .+...........
+2026-01-24T16:08:10.706399190Z [err]  .+..+...+....+...+
+2026-01-24T16:08:10.706402220Z [err]  ...+...+......+.........+
+2026-01-24T16:08:10.708336130Z [err]  ..+...+....+..+.+
+2026-01-24T16:08:10.708338730Z [err]  .....+...+....+........
+2026-01-24T16:08:10.708341520Z [err]  ...+......+.+..+
+2026-01-24T16:08:10.708344170Z [err]  .......+.....+....+......
+2026-01-24T16:08:10.710773500Z [err]  ........+.......
+2026-01-24T16:08:10.710777390Z [err]  .....+.+......
+2026-01-24T16:08:10.710780000Z [err]  ..+.........+
+2026-01-24T16:08:10.710783130Z [err]  .+...........+......
+2026-01-24T16:08:10.710785790Z [err]  .......+..+.+.....
+2026-01-24T16:08:10.712551924Z [err]  +............+.+..
+2026-01-24T16:08:10.712555163Z [err]  +....+...+..........
+2026-01-24T16:08:10.712557923Z [err]  ........+......
+2026-01-24T16:08:10.712560433Z [err]  ...+...+......+
+2026-01-24T16:08:10.715296487Z [err]  ...........+.+..+
+2026-01-24T16:08:10.715301297Z [err]  ............+...+....
+2026-01-24T16:08:10.715304916Z [err]  ..+.......+....
+2026-01-24T16:08:10.715308506Z [err]  .+..........+.....
+2026-01-24T16:08:10.718821704Z [err]  ...........
+2026-01-24T16:08:10.718824774Z [err]  .+...+...+.+...+
+2026-01-24T16:08:10.718827634Z [err]  .....+.+.....+.+...
+2026-01-24T16:08:10.718830494Z [err]  .....+.......+........+.+..
+2026-01-24T16:08:10.718833394Z [err]  +............+
+2026-01-24T16:08:10.720850692Z [err]  .......+...+...+...+..
+2026-01-24T16:08:10.720853552Z [err]  +.......+.....+...+
+2026-01-24T16:08:10.720856512Z [err]  .............+.....
+2026-01-24T16:08:10.720859032Z [err]  +.+...+......+...
+2026-01-24T16:08:10.723773742Z [err]  .....+.....+.+..
+2026-01-24T16:08:10.723779172Z [err]  +...+.........+....
+2026-01-24T16:08:10.723784562Z [err]  ..+....+.........+
+2026-01-24T16:08:10.723789142Z [err]  .........+..+.+.....
+2026-01-24T16:08:10.723844711Z [err]  ........+...+..
+2026-01-24T16:08:10.725118144Z [err]  ............+.+
+2026-01-24T16:08:10.725121484Z [err]  ..+....+........+....
+2026-01-24T16:08:10.725125284Z [err]  ........+......
+2026-01-24T16:08:10.725128954Z [err]  ....+........+...
+2026-01-24T16:08:10.727100243Z [err]  +.........+.+..+
+2026-01-24T16:08:10.727107033Z [err]  .............+.....
+2026-01-24T16:08:10.727112113Z [err]  .........++++++
+2026-01-24T16:08:10.727117703Z [err]  -----
+2026-01-24T16:08:10.727122333Z [err]  Certificate request self-signature ok
+2026-01-24T16:08:10.727126933Z [err]  subject=CN=localhost
+2026-01-24T16:08:10.727132632Z [inf]  
+2026-01-24T16:08:10.727137722Z [inf]  waiting for server to shut down....2026-01-24 16:08:10.564 UTC [46] LOG:  received fast shutdown request
+2026-01-24T16:08:10.727142592Z [inf]  2026-01-24 16:08:10.583 UTC [46] LOG:  aborting any active transactions
+2026-01-24T16:08:10.727147702Z [inf]  2026-01-24 16:08:10.585 UTC [46] LOG:  background worker "logical replication launcher" (PID 52) exited with exit code 1
+2026-01-24T16:08:10.727152262Z [inf]  2026-01-24 16:08:10.585 UTC [47] LOG:  shutting down
+2026-01-24T16:08:10.728365367Z [inf]  2026-01-24 16:08:10.586 UTC [47] LOG:  checkpoint starting: shutdown immediate
+2026-01-24T16:08:10.817262714Z [inf]  2026-01-24 16:08:10.815 UTC [47] LOG:  checkpoint complete: wrote 925 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.077 s, sync=0.116 s, total=0.231 s; sync files=301, longest=0.030 s, average=0.001 s; distance=4256 kB, estimate=4256 kB; lsn=0/1915960, redo lsn=0/1915960
+2026-01-24T16:08:10.825332229Z [inf]  2026-01-24 16:08:10.821 UTC [46] LOG:  database system is shut down
+2026-01-24T16:08:10.867469559Z [inf]   done
+2026-01-24T16:08:10.867473499Z [inf]  server stopped
+2026-01-24T16:08:10.867477749Z [inf]  
+2026-01-24T16:08:10.867482639Z [inf]  PostgreSQL init process complete; ready for start up.
+2026-01-24T16:08:10.867485739Z [inf]  
+2026-01-24T16:08:10.891568903Z [err]  2026-01-24 16:08:10.889 UTC [3] LOG:  starting PostgreSQL 17.7 (Debian 17.7-3.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-01-24T16:08:10.891574263Z [err]  2026-01-24 16:08:10.889 UTC [3] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-01-24T16:08:10.891577663Z [err]  2026-01-24 16:08:10.889 UTC [3] LOG:  listening on IPv6 address "::", port 5432
+2026-01-24T16:08:10.893864985Z [err]  2026-01-24 16:08:10.892 UTC [3] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-01-24T16:08:10.902464358Z [err]  2026-01-24 16:08:10.899 UTC [78] LOG:  database system was shut down at 2026-01-24 16:08:10 UTC
+2026-01-24T16:08:10.912654268Z [err]  2026-01-24 16:08:10.910 UTC [3] LOG:  database system is ready to accept connections
+2026-01-24T16:13:11.504391550Z [err]  2026-01-24 16:13:10.999 UTC [76] LOG:  checkpoint starting: time
+2026-01-24T16:13:15.456056231Z [err]  2026-01-24 16:13:15.431 UTC [76] LOG:  checkpoint complete: wrote 47 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.417 s, sync=0.004 s, total=4.432 s; sync files=12, longest=0.003 s, average=0.001 s; distance=270 kB, estimate=270 kB; lsn=0/19591D8, redo lsn=0/1959180
+2026-01-24T16:14:52.704572927Z [inf]  INFO:     100.64.0.2:24122 - "GET / HTTP/1.1" 200 OK
+2026-01-24T16:14:52.704576787Z [inf]  INFO:     100.64.0.2:24122 - "GET /style.css HTTP/1.1" 200 OK
+2026-01-24T16:14:52.704580477Z [inf]  INFO:     100.64.0.2:24122 - "GET /app.js HTTP/1.1" 200 OK
+2026-01-24T16:14:52.704583657Z [inf]  INFO:     100.64.0.2:24122 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-01-24T16:14:52.704586667Z [inf]  INFO:     100.64.0.2:15442 - "POST /api/auth/login HTTP/1.1" 200 OK
+2026-01-24T16:14:59.179070689Z [inf]  [parameters: ('admin', 'SEARCH', 'q=None, city=None, const=kothrud')]
+2026-01-24T16:14:59.179079229Z [inf]  (Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-01-24T16:14:59.179085219Z [inf]  INFO:     100.64.0.2:15444 - "GET /api/search?limit=50&constituency=kothrud HTTP/1.1" 500 Internal Server Error
+2026-01-24T16:14:59.179102778Z [inf]  INTERNAL ERROR: (sqlite3.IntegrityError) NOT NULL constraint failed: access_logs.user_id
+2026-01-24T16:14:59.179106138Z [inf]  [SQL: INSERT INTO access_logs (user_id, action, details) VALUES ((SELECT id FROM users WHERE username=?), ?, ?)]
+2026-01-24T16:14:59.183623038Z [err]  ERROR:    Exception in ASGI application
+2026-01-24T16:14:59.183631398Z [err]  Traceback (most recent call last):
+2026-01-24T16:14:59.183635807Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+2026-01-24T16:14:59.183639787Z [err]      self.dialect.do_execute(
+2026-01-24T16:14:59.183643627Z [err]      ~~~~~~~~~~~~~~~~~~~~~~~^
+2026-01-24T16:14:59.183647467Z [err]          cursor, str_statement, effective_parameters, context
+2026-01-24T16:14:59.183650937Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.183655747Z [err]      )
+2026-01-24T16:14:59.183659177Z [err]      ^
+2026-01-24T16:14:59.183662537Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+2026-01-24T16:14:59.183665597Z [err]      cursor.execute(statement, parameters)
+2026-01-24T16:14:59.183668877Z [err]      ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.183672287Z [err]  sqlite3.IntegrityError: NOT NULL constraint failed: access_logs.user_id
+2026-01-24T16:14:59.183675737Z [err]  
+2026-01-24T16:14:59.183680467Z [err]  The above exception was the direct cause of the following exception:
+2026-01-24T16:14:59.183683587Z [err]  
+2026-01-24T16:14:59.183686586Z [err]  Traceback (most recent call last):
+2026-01-24T16:14:59.183690076Z [err]    File "/app/.venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 410, in run_asgi
+2026-01-24T16:14:59.183694386Z [err]      result = await app(  # type: ignore[func-returns-value]
+2026-01-24T16:14:59.183697376Z [err]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.183700126Z [err]          self.scope, self.receive, self.send
+2026-01-24T16:14:59.183703896Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.183707676Z [err]      )
+2026-01-24T16:14:59.183941842Z [err]      ^
+2026-01-24T16:14:59.183945882Z [err]    File "/app/.venv/lib/python3.13/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+2026-01-24T16:14:59.183948262Z [err]      return await self.app(scope, receive, send)
+2026-01-24T16:14:59.183950702Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.183952902Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/applications.py", line 1135, in __call__
+2026-01-24T16:14:59.183955281Z [err]      await super().__call__(scope, receive, send)
+2026-01-24T16:14:59.183957541Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/applications.py", line 107, in __call__
+2026-01-24T16:14:59.183960531Z [err]      await self.middleware_stack(scope, receive, send)
+2026-01-24T16:14:59.183962591Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-01-24T16:14:59.183965221Z [err]      raise exc
+2026-01-24T16:14:59.183967561Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-01-24T16:14:59.183970171Z [err]      await self.app(scope, receive, _send)
+2026-01-24T16:14:59.183972581Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/cors.py", line 85, in __call__
+2026-01-24T16:14:59.183974681Z [err]      await self.app(scope, receive, send)
+2026-01-24T16:14:59.183976981Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-01-24T16:14:59.183980901Z [err]      await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-01-24T16:14:59.183983081Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-01-24T16:14:59.183985261Z [err]      raise exc
+2026-01-24T16:14:59.183987441Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-01-24T16:14:59.184538501Z [err]      response = await f(request)
+2026-01-24T16:14:59.184543051Z [err]                 ^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.184546680Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 355, in app
+2026-01-24T16:14:59.184558620Z [err]      await app(scope, receive, sender)
+2026-01-24T16:14:59.184565680Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-01-24T16:14:59.184569010Z [err]      await self.app(scope, receive, send)
+2026-01-24T16:14:59.184572640Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 716, in __call__
+2026-01-24T16:14:59.184576920Z [err]      await self.middleware_stack(scope, receive, send)
+2026-01-24T16:14:59.184580330Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 736, in app
+2026-01-24T16:14:59.184584020Z [err]      await route.handle(scope, receive, send)
+2026-01-24T16:14:59.184587130Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 290, in handle
+2026-01-24T16:14:59.184590500Z [err]      await self.app(scope, receive, send)
+2026-01-24T16:14:59.184593570Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 115, in app
+2026-01-24T16:14:59.184596570Z [err]      await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-01-24T16:14:59.184599560Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-01-24T16:14:59.184602609Z [err]      raise exc
+2026-01-24T16:14:59.184605549Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-01-24T16:14:59.184609429Z [err]      await app(scope, receive, sender)
+2026-01-24T16:14:59.184612879Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 101, in app
+2026-01-24T16:14:59.185009863Z [err]      db.execute(
+2026-01-24T16:14:59.185013313Z [err]      ~~~~~~~~~~^
+2026-01-24T16:14:59.185016503Z [err]          text("INSERT INTO access_logs (user_id, action, details) VALUES ((SELECT id FROM users WHERE username=:u), :a, :d)"),
+2026-01-24T16:14:59.185018953Z [err]          statement,
+2026-01-24T16:14:59.185019653Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.185024843Z [err]          ^^^^^^^^^^
+2026-01-24T16:14:59.185030003Z [err]      raw_response = await run_endpoint_function(
+2026-01-24T16:14:59.185032142Z [err]          {"u": current_user.username, "a": "SEARCH", "d": f"q={q}, city={city}, const={constituency}"}
+2026-01-24T16:14:59.185040522Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.185041742Z [err]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.185046802Z [err]      )
+2026-01-24T16:14:59.185048952Z [err]      ...<3 lines>...
+2026-01-24T16:14:59.185054302Z [err]      ^
+2026-01-24T16:14:59.185055252Z [err]      )
+2026-01-24T16:14:59.185061952Z [err]      ^
+2026-01-24T16:14:59.185062712Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+2026-01-24T16:14:59.185069362Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+2026-01-24T16:14:59.185069552Z [err]      return self._execute_internal(
+2026-01-24T16:14:59.185077462Z [err]      return await dependant.call(**values)
+2026-01-24T16:14:59.185078042Z [err]             ~~~~~~~~~~~~~~~~~~~~~~^
+2026-01-24T16:14:59.185081662Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.185085521Z [err]    File "/app/backend/search.py", line 27, in search_records
+2026-01-24T16:14:59.185577812Z [err]          dialect,
+2026-01-24T16:14:59.185583202Z [err]      )
+2026-01-24T16:14:59.185584032Z [err]      ...<4 lines>...
+2026-01-24T16:14:59.185592872Z [err]      ^
+2026-01-24T16:14:59.185594402Z [err]          _add_event=_add_event,
+2026-01-24T16:14:59.185595902Z [err]      )
+2026-01-24T16:14:59.185603422Z [err]          ^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.185604582Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+2026-01-24T16:14:59.185606882Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+2026-01-24T16:14:59.185613312Z [err]      )
+2026-01-24T16:14:59.185616662Z [err]      return connection._execute_clauseelement(
+2026-01-24T16:14:59.185617362Z [err]      ret = self._execute_context(
+2026-01-24T16:14:59.185621732Z [err]      ^
+2026-01-24T16:14:59.185623891Z [err]             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-01-24T16:14:59.185628821Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2258, in _execute_internal
+2026-01-24T16:14:59.185630971Z [err]          self, distilled_params, execution_options
+2026-01-24T16:14:59.185636011Z [err]      result = conn.execute(
+2026-01-24T16:14:59.185637231Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.185641091Z [err]          statement, params or {}, execution_options=execution_options
+2026-01-24T16:14:59.185645201Z [err]      )
+2026-01-24T16:14:59.185648681Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+2026-01-24T16:14:59.185652141Z [err]      return meth(
+2026-01-24T16:14:59.185655641Z [err]          self,
+2026-01-24T16:14:59.185658931Z [err]          distilled_parameters,
+2026-01-24T16:14:59.185662761Z [err]          execution_options or NO_OPTIONS,
+2026-01-24T16:14:59.185942986Z [err]      ...<8 lines>...
+2026-01-24T16:14:59.185947165Z [err]          cache_hit=cache_hit,
+2026-01-24T16:14:59.185950395Z [err]      )
+2026-01-24T16:14:59.185953945Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+2026-01-24T16:14:59.185955805Z [err]      self.dialect.do_execute(
+2026-01-24T16:14:59.185958305Z [err]      return self._exec_single_context(
+2026-01-24T16:14:59.185960425Z [err]      ~~~~~~~~~~~~~~~~~~~~~~~^
+2026-01-24T16:14:59.185961445Z [err]      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-01-24T16:14:59.185962095Z [err]             ~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-01-24T16:14:59.185964475Z [err]          cursor, str_statement, effective_parameters, context
+2026-01-24T16:14:59.185965675Z [err]          dialect, context, statement, parameters
+2026-01-24T16:14:59.185965755Z [err]          e, str_statement, effective_parameters, cursor, context
+2026-01-24T16:14:59.185970575Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.185970655Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.185972475Z [err]      ^
+2026-01-24T16:14:59.185975895Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+2026-01-24T16:14:59.185976905Z [err]      )
+2026-01-24T16:14:59.185979835Z [err]      self._handle_dbapi_exception(
+2026-01-24T16:14:59.185982565Z [err]      ^
+2026-01-24T16:14:59.185988575Z [err]      )
+2026-01-24T16:14:59.185988685Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+2026-01-24T16:14:59.185989875Z [err]      raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+2026-01-24T16:14:59.186019775Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+2026-01-24T16:14:59.186257711Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.186261691Z [err]      )
+2026-01-24T16:14:59.186268330Z [err]      ^
+2026-01-24T16:14:59.186274150Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+2026-01-24T16:14:59.186277910Z [err]      cursor.execute(statement, parameters)
+2026-01-24T16:14:59.186286680Z [err]      ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:14:59.186292870Z [err]  sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) NOT NULL constraint failed: access_logs.user_id
+2026-01-24T16:14:59.186296500Z [err]  [SQL: INSERT INTO access_logs (user_id, action, details) VALUES ((SELECT id FROM users WHERE username=?), ?, ?)]
+2026-01-24T16:14:59.186299960Z [err]  [parameters: ('admin', 'SEARCH', 'q=None, city=None, const=kothrud')]
+2026-01-24T16:14:59.186303200Z [err]  (Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-01-24T16:15:19.198236918Z [inf]  INTERNAL ERROR: (sqlite3.IntegrityError) NOT NULL constraint failed: ingestion_logs.uploaded_by_user_id
+2026-01-24T16:15:19.198244168Z [inf]  [SQL: INSERT INTO ingestion_logs (filename, uploaded_by_user_id, total_rows, inserted_rows, rejected_rows) VALUES (?, (SELECT id FROM users WHERE username=?), 0, 0, 0)]
+2026-01-24T16:15:19.198247928Z [inf]  [parameters: ('extracted_data_250.xlsx', 'admin')]
+2026-01-24T16:15:19.198251718Z [inf]  (Background on this error at: https://sqlalche.me/e/20/gkpj)
+2026-01-24T16:15:19.198255058Z [inf]  INFO:     100.64.0.2:40004 - "POST /api/admin/ingest HTTP/1.1" 500 Internal Server Error
+2026-01-24T16:15:19.198261608Z [err]  ERROR:    Exception in ASGI application
+2026-01-24T16:15:19.198265888Z [err]  Traceback (most recent call last):
+2026-01-24T16:15:19.198269788Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+2026-01-24T16:15:19.198276917Z [err]      self.dialect.do_execute(
+2026-01-24T16:15:19.198280457Z [err]      ~~~~~~~~~~~~~~~~~~~~~~~^
+2026-01-24T16:15:19.198283757Z [err]          cursor, str_statement, effective_parameters, context
+2026-01-24T16:15:19.198286977Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.198291997Z [err]      )
+2026-01-24T16:15:19.198295187Z [err]      ^
+2026-01-24T16:15:19.198298807Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+2026-01-24T16:15:19.198301847Z [err]      cursor.execute(statement, parameters)
+2026-01-24T16:15:19.198305357Z [err]      ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.198308917Z [err]  sqlite3.IntegrityError: NOT NULL constraint failed: ingestion_logs.uploaded_by_user_id
+2026-01-24T16:15:19.198312397Z [err]  
+2026-01-24T16:15:19.198316947Z [err]  The above exception was the direct cause of the following exception:
+2026-01-24T16:15:19.198798438Z [err]  
+2026-01-24T16:15:19.198803478Z [err]  Traceback (most recent call last):
+2026-01-24T16:15:19.198807368Z [err]    File "/app/.venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 410, in run_asgi
+2026-01-24T16:15:19.198810328Z [err]      result = await app(  # type: ignore[func-returns-value]
+2026-01-24T16:15:19.198813567Z [err]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.198816777Z [err]          self.scope, self.receive, self.send
+2026-01-24T16:15:19.198819977Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.198823407Z [err]      )
+2026-01-24T16:15:19.198825787Z [err]      ^
+2026-01-24T16:15:19.198828307Z [err]    File "/app/.venv/lib/python3.13/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+2026-01-24T16:15:19.198830797Z [err]      return await self.app(scope, receive, send)
+2026-01-24T16:15:19.198833497Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.198835907Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/applications.py", line 1135, in __call__
+2026-01-24T16:15:19.198838577Z [err]      await super().__call__(scope, receive, send)
+2026-01-24T16:15:19.198840827Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/applications.py", line 107, in __call__
+2026-01-24T16:15:19.198843227Z [err]      await self.middleware_stack(scope, receive, send)
+2026-01-24T16:15:19.198846257Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-01-24T16:15:19.198848327Z [err]      raise exc
+2026-01-24T16:15:19.198851267Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-01-24T16:15:19.198853567Z [err]      await self.app(scope, receive, _send)
+2026-01-24T16:15:19.198856057Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/cors.py", line 93, in __call__
+2026-01-24T16:15:19.199929718Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 290, in handle
+2026-01-24T16:15:19.199938407Z [err]      await self.app(scope, receive, send)
+2026-01-24T16:15:19.199940717Z [err]      await self.simple_response(scope, receive, send, request_headers=headers)
+2026-01-24T16:15:19.199944917Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 115, in app
+2026-01-24T16:15:19.199949057Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+2026-01-24T16:15:19.199952327Z [err]      await self.app(scope, receive, send)
+2026-01-24T16:15:19.199955187Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-01-24T16:15:19.199957467Z [err]      await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-01-24T16:15:19.199959967Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-01-24T16:15:19.199962947Z [err]      raise exc
+2026-01-24T16:15:19.199965327Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-01-24T16:15:19.199968127Z [err]      await app(scope, receive, sender)
+2026-01-24T16:15:19.199971057Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-01-24T16:15:19.199973897Z [err]      await self.app(scope, receive, send)
+2026-01-24T16:15:19.199977377Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 716, in __call__
+2026-01-24T16:15:19.199980317Z [err]      await self.middleware_stack(scope, receive, send)
+2026-01-24T16:15:19.199982987Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 736, in app
+2026-01-24T16:15:19.199985467Z [err]      await route.handle(scope, receive, send)
+2026-01-24T16:15:19.201079577Z [err]      await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-01-24T16:15:19.201083917Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-01-24T16:15:19.201086987Z [err]      raise exc
+2026-01-24T16:15:19.201089917Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-01-24T16:15:19.201093237Z [err]      await app(scope, receive, sender)
+2026-01-24T16:15:19.201096207Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 101, in app
+2026-01-24T16:15:19.201099497Z [err]      response = await f(request)
+2026-01-24T16:15:19.201102417Z [err]                 ^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.201105657Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 355, in app
+2026-01-24T16:15:19.201108866Z [err]      raw_response = await run_endpoint_function(
+2026-01-24T16:15:19.201111936Z [err]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.201115986Z [err]      ...<3 lines>...
+2026-01-24T16:15:19.201119276Z [err]      )
+2026-01-24T16:15:19.201122236Z [err]      ^
+2026-01-24T16:15:19.201125546Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+2026-01-24T16:15:19.201128586Z [err]      return await dependant.call(**values)
+2026-01-24T16:15:19.201132006Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.201134896Z [err]    File "/app/backend/ingest.py", line 38, in upload_file
+2026-01-24T16:15:19.201137596Z [err]      db.execute(
+2026-01-24T16:15:19.201140226Z [err]      ~~~~~~~~~~^
+2026-01-24T16:15:19.201143136Z [err]          text("INSERT INTO ingestion_logs (filename, uploaded_by_user_id, total_rows, inserted_rows, rejected_rows) VALUES (:f, (SELECT id FROM users WHERE username=:u), 0, 0, 0)"),
+2026-01-24T16:15:19.201553138Z [err]          statement, params or {}, execution_options=execution_options
+2026-01-24T16:15:19.201556588Z [err]      )
+2026-01-24T16:15:19.201559628Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1419, in execute
+2026-01-24T16:15:19.201562438Z [err]      return meth(
+2026-01-24T16:15:19.201565398Z [err]          self,
+2026-01-24T16:15:19.201570628Z [err]          distilled_parameters,
+2026-01-24T16:15:19.201574368Z [err]          execution_options or NO_OPTIONS,
+2026-01-24T16:15:19.201586968Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.201591317Z [err]          {"f": filename, "u": current_user.username}
+2026-01-24T16:15:19.201594157Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.201596927Z [err]      )
+2026-01-24T16:15:19.201601107Z [err]      ^
+2026-01-24T16:15:19.201603647Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+2026-01-24T16:15:19.201606557Z [err]      return self._execute_internal(
+2026-01-24T16:15:19.201610877Z [err]             ~~~~~~~~~~~~~~~~~~~~~~^
+2026-01-24T16:15:19.201614517Z [err]          statement,
+2026-01-24T16:15:19.201617737Z [err]          ^^^^^^^^^^
+2026-01-24T16:15:19.201620957Z [err]      ...<4 lines>...
+2026-01-24T16:15:19.201623587Z [err]          _add_event=_add_event,
+2026-01-24T16:15:19.201625997Z [err]          ^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.201628247Z [err]      )
+2026-01-24T16:15:19.201630877Z [err]      ^
+2026-01-24T16:15:19.201634107Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/orm/session.py", line 2258, in _execute_internal
+2026-01-24T16:15:19.201636407Z [err]      result = conn.execute(
+2026-01-24T16:15:19.202092669Z [err]      )
+2026-01-24T16:15:19.202095789Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/sql/elements.py", line 527, in _execute_on_connection
+2026-01-24T16:15:19.202098749Z [err]      return connection._execute_clauseelement(
+2026-01-24T16:15:19.202101919Z [err]             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-01-24T16:15:19.202104669Z [err]          self, distilled_params, execution_options
+2026-01-24T16:15:19.202107529Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.202110479Z [err]      )
+2026-01-24T16:15:19.202113079Z [err]      ^
+2026-01-24T16:15:19.202115709Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1641, in _execute_clauseelement
+2026-01-24T16:15:19.202117839Z [err]      ret = self._execute_context(
+2026-01-24T16:15:19.202120349Z [err]          dialect,
+2026-01-24T16:15:19.202122769Z [err]      ...<8 lines>...
+2026-01-24T16:15:19.202125168Z [err]          cache_hit=cache_hit,
+2026-01-24T16:15:19.202127628Z [err]      )
+2026-01-24T16:15:19.202130218Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1846, in _execute_context
+2026-01-24T16:15:19.202133048Z [err]      return self._exec_single_context(
+2026-01-24T16:15:19.202135128Z [err]             ~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-01-24T16:15:19.202137168Z [err]          dialect, context, statement, parameters
+2026-01-24T16:15:19.202139538Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.202142988Z [err]      )
+2026-01-24T16:15:19.202145258Z [err]      ^
+2026-01-24T16:15:19.202147398Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1986, in _exec_single_context
+2026-01-24T16:15:19.202150318Z [err]      self._handle_dbapi_exception(
+2026-01-24T16:15:19.202152638Z [err]      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-01-24T16:15:19.202603740Z [err]          e, str_statement, effective_parameters, cursor, context
+2026-01-24T16:15:19.202608829Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.202611989Z [err]      )
+2026-01-24T16:15:19.202615559Z [err]      ^
+2026-01-24T16:15:19.202619409Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 2363, in _handle_dbapi_exception
+2026-01-24T16:15:19.202624249Z [err]      raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+2026-01-24T16:15:19.202627769Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/base.py", line 1967, in _exec_single_context
+2026-01-24T16:15:19.202630619Z [err]      self.dialect.do_execute(
+2026-01-24T16:15:19.202634279Z [err]      ~~~~~~~~~~~~~~~~~~~~~~~^
+2026-01-24T16:15:19.202637829Z [err]          cursor, str_statement, effective_parameters, context
+2026-01-24T16:15:19.202641209Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.202644459Z [err]      )
+2026-01-24T16:15:19.202647839Z [err]      ^
+2026-01-24T16:15:19.202651329Z [err]    File "/app/.venv/lib/python3.13/site-packages/sqlalchemy/engine/default.py", line 952, in do_execute
+2026-01-24T16:15:19.202654709Z [err]      cursor.execute(statement, parameters)
+2026-01-24T16:15:19.202657889Z [err]      ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T16:15:19.202661678Z [err]  sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) NOT NULL constraint failed: ingestion_logs.uploaded_by_user_id
+2026-01-24T16:15:19.202665388Z [err]  [SQL: INSERT INTO ingestion_logs (filename, uploaded_by_user_id, total_rows, inserted_rows, rejected_rows) VALUES (?, (SELECT id FROM users WHERE username=?), 0, 0, 0)]
+2026-01-24T16:15:19.202668238Z [err]  [parameters: ('extracted_data_250.xlsx', 'admin')]
+2026-01-24T16:15:19.202672368Z [err]  (Background on this error at: https://sqlalche.me/e/20/gkpj)
