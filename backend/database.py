@@ -1,21 +1,25 @@
-import sqlite3
-from sqlite3 import Connection
-from contextlib import contextmanager
+import os
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.ext.declarative import declarative_base
 
-DB_PATH = "dgt.db"
+# Support DATABASE_URL from env or fallback to local sqlite
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./dgt.db")
 
-@contextmanager
+# Fix for Render/Postgres: change postgres:// to postgresql://
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
+connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
+
+engine = create_engine(DATABASE_URL, connect_args=connect_args, pool_pre_ping=True)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
 def get_db():
-    """Context manager for thread-safe database connections."""
-    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
-    conn.row_factory = sqlite3.Row
+    db = SessionLocal()
     try:
-        yield conn
+        yield db
     finally:
-        conn.close()
+        db.close()
 
-def get_db_connection() -> Connection:
-    """Legacy function - creates a new connection (caller must close)."""
-    conn = sqlite3.connect(DB_PATH, check_same_thread=False)
-    conn.row_factory = sqlite3.Row
-    return conn

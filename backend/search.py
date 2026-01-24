@@ -2,6 +2,8 @@ from fastapi import APIRouter, Depends, Query
 from backend.models import SearchResponse, RecordOut, UserData
 from backend.auth import get_current_user
 from backend.database import get_db
+from sqlalchemy.orm import Session
+from sqlalchemy import text
 from typing import Optional
 
 router = APIRouter()
@@ -18,47 +20,45 @@ async def search_records(
     constituency: Optional[str] = None,
     page: int = 1,
     limit: int = 50,
-    current_user: UserData = Depends(get_current_user)
+    current_user: UserData = Depends(get_current_user),
+    db: Session = Depends(get_db)
 ):
-    with get_db() as db:
-        # Log access
-        db.execute(
-            "INSERT INTO access_logs (user_id, action, details) VALUES ((SELECT id FROM users WHERE username=?), ?, ?)",
-            (current_user.username, "SEARCH", f"q={q}, city={city}, const={constituency}")
-        )
-        db.commit()
+    # Log access
+    db.execute(
+        text("INSERT INTO access_logs (user_id, action, details) VALUES ((SELECT id FROM users WHERE username=:u), :a, :d)"),
+        {"u": current_user.username, "a": "SEARCH", "d": f"q={q}, city={city}, const={constituency}"}
+    )
+    db.commit()
 
-        # Build Query
-        sql_query = "SELECT * FROM records WHERE 1=1"
-        params = []
+    # Build Query
+    sql_base = "FROM records WHERE 1=1"
+    params = {}
 
-        if q:
-            sql_query += " AND (name LIKE ? OR phone LIKE ?)"
-            params.extend([f"%{q}%", f"%{q}%"])
+    if q:
+        sql_base += " AND (name LIKE :q OR phone LIKE :q)"
+        params["q"] = f"%{q}%"
+    
+    if city:
+        sql_base += " AND city LIKE :city"
+        params["city"] = f"%{city}%"
         
-        if city:
-            sql_query += " AND city LIKE ?"
-            params.append(f"%{city}%")
-            
-        if constituency:
-            sql_query += " AND constituency LIKE ?"
-            params.append(f"%{constituency}%")
+    if constituency:
+        sql_base += " AND constituency LIKE :con"
+        params["con"] = f"%{constituency}%"
 
-        # Pagination
-        offset = (page - 1) * limit
-        
-        # Count total
-        count_sql = f"SELECT COUNT(*) as total FROM ({sql_query})"
-        cursor = db.cursor()
-        cursor.execute(count_sql, params)
-        total = cursor.fetchone()["total"]
+    # Pagination
+    offset = (page - 1) * limit
+    
+    # Count total
+    count_sql = text(f"SELECT COUNT(*) {sql_base}")
+    total = db.execute(count_sql, params).scalar()
 
-        # Execute main fetch
-        sql_query += " LIMIT ? OFFSET ?"
-        params.extend([limit, offset])
-        
-        cursor.execute(sql_query, params)
-        rows = cursor.fetchall()
+    # Execute main fetch
+    fetch_sql = text(f"SELECT * {sql_base} LIMIT :limit OFFSET :offset")
+    params.update({"limit": limit, "offset": offset})
+    
+    rows = db.execute(fetch_sql, params).fetchall()
+
     
     results = []
     for row in rows:

@@ -4,5 +4,6 @@ pandas
 python-multipart
 python-jose[cryptography]
 bcrypt
-openpyxl
 sqlalchemy
+psycopg2-binary
+openpyxl

@@ -63,13 +63,13 @@ async def get_current_admin(current_user: UserData = Depends(get_current_user)):
     return current_user
 
 @router.post("/login", response_model=Token)
-async def login(form_data: UserLogin):
-    with get_db() as db:
-        cursor = db.cursor()
-        cursor.execute("SELECT id, username, password_hash, role FROM users WHERE username = ?", (form_data.username,))
-        user = cursor.fetchone()
+async def login(form_data: UserLogin, db: Session = Depends(get_db)):
+    result = db.execute(
+        text("SELECT username, password_hash, role FROM users WHERE username = :u"),
+        {"u": form_data.username}
+    ).fetchone()
 
-    if not user or not verify_password(form_data.password, user["password_hash"]):
+    if not result or not verify_password(form_data.password, result.password_hash):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password",
@@ -78,7 +78,8 @@ async def login(form_data: UserLogin):
     
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
-        data={"sub": user["username"], "role": user["role"]},
+        data={"sub": result.username, "role": result.role},
         expires_delta=access_token_expires
     )
-    return {"access_token": access_token, "token_type": "bearer", "role": user["role"]}
+    return {"access_token": access_token, "token_type": "bearer", "role": result.role}
+
