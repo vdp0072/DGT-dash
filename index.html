@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DGT Data Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Auth View -->
+        <div id="auth-view" class="view hidden">
+            <div class="login-container">
+                <div class="glass-card login-card">
+                    <div class="logo-area">
+                        <i class="fa-solid fa-layer-group logo-icon"></i>
+                        <h1>DGT Portal</h1>
+                    </div>
+                    <form id="login-form">
+                        <div class="input-group">
+                            <label>Username</label>
+                            <input type="text" id="username" placeholder="Enter username" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Password</label>
+                            <input type="password" id="password" placeholder="Enter password" required>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <span>Sign In</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </form>
+                    <p id="auth-error" class="error-msg hidden"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard View -->
+        <div id="dashboard-view" class="view hidden">
+            <nav class="sidebar glass-panel">
+                <div class="nav-header">
+                    <i class="fa-solid fa-layer-group logo-icon"></i>
+                    <span>DGT Portal</span>
+                </div>
+                <ul class="nav-links">
+                    <li class="active" onclick="showPage('search')">
+                        <i class="fa-solid fa-search"></i>
+                        <span>Search</span>
+                    </li>
+                    <li id="admin-ingest-link" class="hidden" onclick="showPage('ingest')">
+                        <i class="fa-solid fa-upload"></i>
+                        <span>Ingest Data</span>
+                    </li>
+                    <li id="admin-logs-link" class="hidden" onclick="showPage('logs')">
+                        <i class="fa-solid fa-list-check"></i>
+                        <span>Audit Logs</span>
+                    </li>
+                </ul>
+                <div class="nav-footer">
+                    <div class="user-info">
+                        <div class="avatar">
+                            <i class="fa-solid fa-user"></i>
+                        </div>
+                        <div class="user-details">
+                            <span id="display-username">User</span>
+                            <span id="display-role" class="badge">Role</span>
+                        </div>
+                    </div>
+                    <button id="logout-btn" class="btn-icon">
+                        <i class="fa-solid fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </nav>
+
+            <main class="main-content">
+                <!-- Search Page -->
+                <section id="page-search" class="page-section">
+                    <div class="page-header">
+                        <h2>Data Search</h2>
+                        <p>Search across the database with smart filters.</p>
+                    </div>
+
+                    <div class="search-bar glass-card">
+                        <form id="search-form">
+                            <div class="search-inputs">
+                                <div class="field-item">
+                                    <i class="fa-solid fa-user-tag"></i>
+                                    <input type="text" id="q-general" placeholder="Name or Phone...">
+                                </div>
+                                <div class="field-item">
+                                    <i class="fa-solid fa-city"></i>
+                                    <input type="text" id="q-city" placeholder="City...">
+                                </div>
+                                <div class="field-item">
+                                    <i class="fa-solid fa-map-location-dot"></i>
+                                    <input type="text" id="q-constituency" placeholder="Constituency...">
+                                </div>
+                                <button type="submit" class="btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="results-area">
+                        <div id="loading-indicator" class="hidden">
+                            <div class="spinner"></div> Loading records...
+                        </div>
+                        <div id="results-meta" class="hidden">
+                            <span>Found <b id="total-count">0</b> records</span>
+                        </div>
+                        <div class="table-container glass-card">
+                            <table id="results-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Father's Name</th>
+                                        <th>Age</th>
+                                        <th>Gender</th>
+                                        <th>City</th>
+                                        <th>Constituency</th>
+                                        <th>Company</th>
+                                        <th>Phone</th>
+                                        <th>Misc</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="results-body">
+                                    <!-- Rows here -->
+                                </tbody>
+                            </table>
+                            <div id="no-results" class="empty-state hidden">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                <p>No records found matching criteria.</p>
+                            </div>
+                        </div>
+                        <div class="pagination hidden" id="pagination-controls">
+                            <button id="prev-btn" disabled>Previous</button>
+                            <span id="page-indicator">Page 1</span>
+                            <button id="next-btn">Next</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Ingest Page (Admin) -->
+                <section id="page-ingest" class="page-section hidden">
+                    <div class="page-header">
+                        <h2>Data Ingestion</h2>
+                        <p>Upload CSV/XLSX/JSON files to update the database.</p>
+                    </div>
+
+                    <div class="ingest-container glass-card">
+                        <div class="drop-zone" id="drop-zone">
+                            <input type="file" id="file-input" class="hidden" accept=".csv, .xlsx, .json">
+                            <i class="fa-solid fa-cloud-arrow-up cloud-icon"></i>
+                            <h3>Drag & Drop or Click to Upload</h3>
+                            <p>Supported: .csv, .xlsx, .json</p>
+                            <p class="file-name hidden" id="selected-file-name"></p>
+                        </div>
+                        <div class="ingest-actions">
+                            <button id="upload-btn" class="btn-primary" disabled>
+                                <i class="fa-solid fa-play"></i> Start Ingestion
+                            </button>
+                        </div>
+
+                        <div id="upload-progress" class="progress-area hidden">
+                            <div class="progress-status">Processing...</div>
+                        </div>
+
+                        <div id="upload-summary" class="summary-card hidden">
+                            <h4>Ingestion Complete</h4>
+                            <div class="stats-grid">
+                                <div class="stat-item success">
+                                    <span>Inserted</span>
+                                    <b id="summary-inserted">0</b>
+                                </div>
+                                <div class="stat-item error">
+                                    <span>Rejected</span>
+                                    <b id="summary-rejected">0</b>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Total</span>
+                                    <b id="summary-total">0</b>
+                                </div>
+                            </div>
+                            <p id="summary-reason" class="error-text hidden"></p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Logs Page (Admin) -->
+                <section id="page-logs" class="page-section hidden">
+                    <div class="page-header">
+                        <h2>System Logs</h2>
+                        <p>Audit trail of user actions.</p>
+                    </div>
+                    <div class="glass-card">
+                        <p><i>Log viewer implementation pending...</i></p>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>

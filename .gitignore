@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+
+# Database
+*.db
+*.sqlite3
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+.gemini/
+
+# Frontend
+node_modules/
+
+# Test outputs
+extracted_data_250.xlsx
+test_v2.csv
+dupes.csv
