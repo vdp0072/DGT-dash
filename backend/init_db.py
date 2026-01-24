@@ -1,9 +1,12 @@
 import sqlite3
 import os
-from passlib.context import CryptContext
+import os
+import bcrypt
 
 DB_PATH = "dgt.db"
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def get_password_hash(password):
+    return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
 def init_db():
     print(f"Initializing database at {os.path.abspath(DB_PATH)}")
@@ -75,7 +78,7 @@ def init_db():
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_records_phone ON records(phone)")
 
     # Seed Admin User
-    admin_password = pwd_context.hash("admin123")
+    admin_password = get_password_hash("admin123")
     try:
         cursor.execute("INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)", 
                        ("admin", admin_password, "admin"))

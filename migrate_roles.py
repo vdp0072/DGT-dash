@@ -25,10 +25,10 @@ def update_role_constraint():
         cursor.execute("ALTER TABLE users_new RENAME TO users")
         
         # 4. Create the superuser
-        from passlib.context import CryptContext
-        pwd = CryptContext(schemes=['bcrypt'], deprecated='auto')
+        import bcrypt
+        hashed_pwd = bcrypt.hashpw('super123'.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
         cursor.execute('INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)', 
-                       ('superuser', pwd.hash('super123'), 'superuser'))
+                       ('superuser', hashed_pwd, 'superuser'))
         
         conn.commit()
         print("Successfully updated 'users' table and created user: superuser / super123")
