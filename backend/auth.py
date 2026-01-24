@@ -5,6 +5,8 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 import bcrypt
+from sqlalchemy.orm import Session
+from sqlalchemy import text
 from backend.models import UserLogin, Token, UserData
 from backend.database import get_db
 
