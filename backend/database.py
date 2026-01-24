@@ -2,7 +2,7 @@ import sqlite3
 from sqlite3 import Connection
 from contextlib import contextmanager
 
-DB_PATH = "d:/DGT_dash/dgt.db"
+DB_PATH = "dgt.db"
 
 @contextmanager
 def get_db():
