@@ -29,7 +29,7 @@ class RecordBase(BaseModel):
     misc: Optional[str] = None
 
 class RecordOut(RecordBase):
-    id: int
+    id: Optional[int] = None
     source_file_id: Optional[int]
     created_at: datetime
     

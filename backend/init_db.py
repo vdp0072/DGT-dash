@@ -12,7 +12,7 @@ def init_db():
         # Users Table
         conn.execute(text('''
         CREATE TABLE IF NOT EXISTS users (
-            id SERIAL PRIMARY KEY,
+            id INTEGER PRIMARY KEY,
             username TEXT UNIQUE NOT NULL,
             password_hash TEXT NOT NULL,
             role TEXT NOT NULL DEFAULT 'user',
@@ -23,7 +23,7 @@ def init_db():
         # Ingestion Logs Table - now linked by username for robustness
         conn.execute(text('''
         CREATE TABLE IF NOT EXISTS ingestion_logs (
-            id SERIAL PRIMARY KEY,
+            id INTEGER PRIMARY KEY,
             filename TEXT NOT NULL,
             uploaded_by_username TEXT NOT NULL,
             upload_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -38,7 +38,7 @@ def init_db():
         # Records Table
         conn.execute(text('''
         CREATE TABLE IF NOT EXISTS records (
-            id SERIAL PRIMARY KEY,
+            id INTEGER PRIMARY KEY,
             name TEXT NOT NULL,
             fathers_name TEXT,
             age INTEGER,
@@ -57,7 +57,7 @@ def init_db():
         # Access Logs Table - now linked by username for robustness
         conn.execute(text('''
         CREATE TABLE IF NOT EXISTS access_logs (
-            id SERIAL PRIMARY KEY,
+            id INTEGER PRIMARY KEY,
             username TEXT NOT NULL,
             action TEXT NOT NULL,
             details TEXT,

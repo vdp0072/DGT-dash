@@ -1,0 +1,88 @@
+2026-01-26T11:32:51.000000000Z [inf]  Starting Container
+2026-01-26T11:32:53.695565680Z [inf]  Initializing database schema...
+2026-01-26T11:32:53.695609427Z [inf]  🔗 Database connection: sqlite:///./dgt.db
+2026-01-26T11:32:53.695617829Z [err]  INFO:     Started server process [1]
+2026-01-26T11:32:53.695625338Z [err]  INFO:     Waiting for application startup.
+2026-01-26T11:32:53.809996592Z [inf]  Seeded admin user (admin/admin123)
+2026-01-26T11:32:53.810005247Z [inf]  Database initialization complete.
+2026-01-26T11:32:53.810011165Z [err]  INFO:     Application startup complete.
+2026-01-26T11:32:53.811476912Z [err]  INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-01-26T11:32:57.000000000Z [inf]  Stopping Container
+2026-01-26T11:32:59.563911984Z [err]  INFO:     Shutting down
+2026-01-26T11:32:59.563923613Z [err]  INFO:     Waiting for application shutdown.
+2026-01-26T11:32:59.563930907Z [err]  INFO:     Application shutdown complete.
+2026-01-26T11:32:59.563937377Z [err]  INFO:     Finished server process [1]
+2026-01-26T11:33:13.561683105Z [inf]  INFO:     100.64.0.2:46006 - "GET / HTTP/1.1" 200 OK
+2026-01-26T11:33:13.561693311Z [inf]  INFO:     100.64.0.2:46006 - "GET /style.css HTTP/1.1" 200 OK
+2026-01-26T11:33:13.561698057Z [inf]  INFO:     100.64.0.2:46020 - "GET /app.js HTTP/1.1" 200 OK
+2026-01-26T11:33:19.453020804Z [inf]  INFO:     100.64.0.2:61608 - "POST /api/auth/login HTTP/1.1" 200 OK
+2026-01-26T11:33:24.629664423Z [inf]  INFO:     100.64.0.2:61620 - "GET /api/search?limit=50&constituency=kothrud HTTP/1.1" 200 OK
+2026-01-26T11:33:32.882639841Z [inf]  INFO:     100.64.0.2:22988 - "POST /api/admin/ingest HTTP/1.1" 200 OK
+2026-01-26T11:33:36.183096205Z [inf]  INTERNAL ERROR: 1 validation error for RecordOut
+2026-01-26T11:33:36.183119879Z [inf]  id
+2026-01-26T11:33:36.183127082Z [inf]    Input should be a valid integer [type=int_type, input_value=None, input_type=NoneType]
+2026-01-26T11:33:36.183133157Z [inf]      For further information visit https://errors.pydantic.dev/2.12/v/int_type
+2026-01-26T11:33:36.183139143Z [inf]  INFO:     100.64.0.2:22988 - "GET /api/search?limit=50&constituency=kothrud HTTP/1.1" 500 Internal Server Error
+2026-01-26T11:33:36.188650833Z [err]  ERROR:    Exception in ASGI application
+2026-01-26T11:33:36.188659463Z [err]  Traceback (most recent call last):
+2026-01-26T11:33:36.188665567Z [err]    File "/app/.venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 410, in run_asgi
+2026-01-26T11:33:36.188673434Z [err]      result = await app(  # type: ignore[func-returns-value]
+2026-01-26T11:33:36.188679323Z [err]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-26T11:33:36.188684767Z [err]          self.scope, self.receive, self.send
+2026-01-26T11:33:36.188690387Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-26T11:33:36.188697869Z [err]      )
+2026-01-26T11:33:36.188703052Z [err]      ^
+2026-01-26T11:33:36.188709271Z [err]    File "/app/.venv/lib/python3.13/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+2026-01-26T11:33:36.188714912Z [err]      return await self.app(scope, receive, send)
+2026-01-26T11:33:36.188720619Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-26T11:33:36.188725632Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/applications.py", line 1135, in __call__
+2026-01-26T11:33:36.188730827Z [err]      await super().__call__(scope, receive, send)
+2026-01-26T11:33:36.188736437Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/applications.py", line 107, in __call__
+2026-01-26T11:33:36.188741973Z [err]      await self.middleware_stack(scope, receive, send)
+2026-01-26T11:33:36.188747522Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-01-26T11:33:36.188752265Z [err]      raise exc
+2026-01-26T11:33:36.188757651Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-01-26T11:33:36.188763083Z [err]      await self.app(scope, receive, _send)
+2026-01-26T11:33:36.188769399Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/cors.py", line 85, in __call__
+2026-01-26T11:33:36.190206202Z [err]      await self.app(scope, receive, send)
+2026-01-26T11:33:36.190210014Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 290, in handle
+2026-01-26T11:33:36.190217137Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-01-26T11:33:36.190219426Z [err]      await self.app(scope, receive, send)
+2026-01-26T11:33:36.190226253Z [err]      await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-01-26T11:33:36.190226741Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 115, in app
+2026-01-26T11:33:36.190234710Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-01-26T11:33:36.190234888Z [err]      await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-01-26T11:33:36.190244123Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-01-26T11:33:36.190245990Z [err]      raise exc
+2026-01-26T11:33:36.190251379Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-01-26T11:33:36.190255873Z [err]      await app(scope, receive, sender)
+2026-01-26T11:33:36.190259732Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-01-26T11:33:36.190263858Z [err]      await self.app(scope, receive, send)
+2026-01-26T11:33:36.190267580Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 716, in __call__
+2026-01-26T11:33:36.190271395Z [err]      await self.middleware_stack(scope, receive, send)
+2026-01-26T11:33:36.190275920Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 736, in app
+2026-01-26T11:33:36.190280016Z [err]      await route.handle(scope, receive, send)
+2026-01-26T11:33:36.191640596Z [err]      raise exc
+2026-01-26T11:33:36.191645873Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-01-26T11:33:36.191650990Z [err]      await app(scope, receive, sender)
+2026-01-26T11:33:36.191652563Z [err]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-26T11:33:36.191656338Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 101, in app
+2026-01-26T11:33:36.191661163Z [err]      ...<3 lines>...
+2026-01-26T11:33:36.191662079Z [err]      response = await f(request)
+2026-01-26T11:33:36.191663304Z [err]  id
+2026-01-26T11:33:36.191670116Z [err]                 ^^^^^^^^^^^^^^^^
+2026-01-26T11:33:36.191670196Z [err]      )
+2026-01-26T11:33:36.191677104Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 355, in app
+2026-01-26T11:33:36.191679517Z [err]      ^
+2026-01-26T11:33:36.191682174Z [err]      raw_response = await run_endpoint_function(
+2026-01-26T11:33:36.191685257Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+2026-01-26T11:33:36.191695714Z [err]      return await dependant.call(**values)
+2026-01-26T11:33:36.191703677Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-26T11:33:36.191709242Z [err]    File "/app/backend/search.py", line 70, in search_records
+2026-01-26T11:33:36.191714408Z [err]      results.append(RecordOut(**data))
+2026-01-26T11:33:36.191720073Z [err]                     ~~~~~~~~~^^^^^^^^
+2026-01-26T11:33:36.191725487Z [err]    File "/app/.venv/lib/python3.13/site-packages/pydantic/main.py", line 250, in __init__
+2026-01-26T11:33:36.191731321Z [err]      validated_self = self.__pydantic_validator__.validate_python(data, self_instance=self)
+2026-01-26T11:33:36.191736750Z [err]  pydantic_core._pydantic_core.ValidationError: 1 validation error for RecordOut
+2026-01-26T11:33:36.192782478Z [err]    Input should be a valid integer [type=int_type, input_value=None, input_type=NoneType]
+2026-01-26T11:33:36.192787681Z [err]      For further information visit https://errors.pydantic.dev/2.12/v/int_type
