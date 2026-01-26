@@ -62,7 +62,7 @@ async def search_records(
     
     results = []
     for row in rows:
-        data = dict(row)
+        data = dict(row._mapping)
         # Apply security masks for non-authorized roles
         if current_user.role not in ["admin", "superuser"]:
             data["phone"] = mask_text(data.get("phone"))

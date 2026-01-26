@@ -1,0 +1,137 @@
+2026-01-24T21:02:10.000000000Z [inf]  Starting Container
+2026-01-24T21:02:13.034291800Z [inf]  🔗 Database connection: sqlite:///./dgt.db
+2026-01-24T21:02:13.034298096Z [err]  INFO:     Started server process [1]
+2026-01-24T21:02:13.034303988Z [err]  INFO:     Waiting for application startup.
+2026-01-24T21:02:13.034310771Z [inf]  Initializing database schema...
+2026-01-24T21:02:13.034316687Z [inf]  Seeded admin user (admin/admin123)
+2026-01-24T21:02:13.034322393Z [inf]  Database initialization complete.
+2026-01-24T21:02:13.034329531Z [err]  INFO:     Application startup complete.
+2026-01-24T21:02:13.034335418Z [err]  INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2026-01-24T21:04:13.538113346Z [inf]  INFO:     100.64.0.2:11460 - "GET / HTTP/1.1" 200 OK
+2026-01-24T21:04:13.538123946Z [inf]  INFO:     100.64.0.2:11460 - "GET /style.css HTTP/1.1" 200 OK
+2026-01-24T21:04:13.538131115Z [inf]  INFO:     100.64.0.2:11464 - "GET /app.js HTTP/1.1" 200 OK
+2026-01-24T21:04:13.538136904Z [inf]  INFO:     100.64.0.2:59422 - "POST /api/auth/login HTTP/1.1" 200 OK
+2026-01-24T21:04:33.432075321Z [inf]  INFO:     100.64.0.2:22834 - "POST /api/admin/ingest HTTP/1.1" 200 OK
+2026-01-24T21:04:33.432081399Z [inf]  INTERNAL ERROR: cannot convert dictionary update sequence element #0 to a sequence
+2026-01-24T21:04:33.432085636Z [inf]  INFO:     100.64.0.2:22834 - "GET /api/search?limit=50&constituency=kothrud HTTP/1.1" 500 Internal Server Error
+2026-01-24T21:04:33.432089429Z [err]  ERROR:    Exception in ASGI application
+2026-01-24T21:04:33.432093231Z [err]  Traceback (most recent call last):
+2026-01-24T21:04:33.432097054Z [err]    File "/app/.venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 410, in run_asgi
+2026-01-24T21:04:33.432100732Z [err]      result = await app(  # type: ignore[func-returns-value]
+2026-01-24T21:04:33.432104510Z [err]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T21:04:33.432108546Z [err]          self.scope, self.receive, self.send
+2026-01-24T21:04:33.432112713Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T21:04:33.432116592Z [err]      )
+2026-01-24T21:04:33.432120313Z [err]      ^
+2026-01-24T21:04:33.432124180Z [err]    File "/app/.venv/lib/python3.13/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+2026-01-24T21:04:33.432127741Z [err]      return await self.app(scope, receive, send)
+2026-01-24T21:04:33.432132145Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T21:04:33.432136756Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/applications.py", line 1135, in __call__
+2026-01-24T21:04:33.432140512Z [err]      await super().__call__(scope, receive, send)
+2026-01-24T21:04:33.432144229Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/applications.py", line 107, in __call__
+2026-01-24T21:04:33.432147970Z [err]      await self.middleware_stack(scope, receive, send)
+2026-01-24T21:04:33.432159718Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-01-24T21:04:33.432812774Z [err]      raise exc
+2026-01-24T21:04:33.432818088Z [err]      await self.middleware_stack(scope, receive, send)
+2026-01-24T21:04:33.432826366Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 736, in app
+2026-01-24T21:04:33.432829056Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/cors.py", line 85, in __call__
+2026-01-24T21:04:33.432829291Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-01-24T21:04:33.432832408Z [err]      await route.handle(scope, receive, send)
+2026-01-24T21:04:33.432835487Z [err]      await self.app(scope, receive, _send)
+2026-01-24T21:04:33.432839039Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 290, in handle
+2026-01-24T21:04:33.432841626Z [err]      await self.app(scope, receive, send)
+2026-01-24T21:04:33.432849066Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-01-24T21:04:33.432856829Z [err]      await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-01-24T21:04:33.432862029Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-01-24T21:04:33.432866447Z [err]      raise exc
+2026-01-24T21:04:33.432870790Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-01-24T21:04:33.432874641Z [err]      await app(scope, receive, sender)
+2026-01-24T21:04:33.432879540Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-01-24T21:04:33.432884077Z [err]      await self.app(scope, receive, send)
+2026-01-24T21:04:33.432888244Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 716, in __call__
+2026-01-24T21:04:33.433524240Z [err]      ...<3 lines>...
+2026-01-24T21:04:33.433529971Z [err]      await self.app(scope, receive, send)
+2026-01-24T21:04:33.433530889Z [err]      )
+2026-01-24T21:04:33.433536297Z [err]      ^
+2026-01-24T21:04:33.433538301Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 115, in app
+2026-01-24T21:04:33.433541701Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+2026-01-24T21:04:33.433543723Z [err]      await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-01-24T21:04:33.433547096Z [err]      return await dependant.call(**values)
+2026-01-24T21:04:33.433549496Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-01-24T21:04:33.433552696Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-24T21:04:33.433554633Z [err]      raise exc
+2026-01-24T21:04:33.433557639Z [err]    File "/app/backend/search.py", line 65, in search_records
+2026-01-24T21:04:33.433559891Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-01-24T21:04:33.433562910Z [err]      data = dict(row)
+2026-01-24T21:04:33.433565751Z [err]      await app(scope, receive, sender)
+2026-01-24T21:04:33.433568053Z [err]  TypeError: cannot convert dictionary update sequence element #0 to a sequence
+2026-01-24T21:04:33.433571293Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 101, in app
+2026-01-24T21:04:33.433575795Z [err]      response = await f(request)
+2026-01-24T21:04:33.433579552Z [err]                 ^^^^^^^^^^^^^^^^
+2026-01-24T21:04:33.433583716Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 355, in app
+2026-01-24T21:04:33.433588252Z [err]      raw_response = await run_endpoint_function(
+2026-01-24T21:04:33.433592198Z [err]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-26T11:10:41.929345209Z [inf]  INFO:     100.64.0.3:62952 - "GET / HTTP/1.1" 200 OK
+2026-01-26T11:10:41.929352681Z [inf]  INFO:     100.64.0.3:62952 - "GET /style.css HTTP/1.1" 200 OK
+2026-01-26T11:10:41.929358270Z [inf]  INFO:     100.64.0.3:62966 - "GET /app.js HTTP/1.1" 200 OK
+2026-01-26T11:10:41.929363762Z [inf]  INFO:     100.64.0.3:62966 - "GET /favicon.ico HTTP/1.1" 404 Not Found
+2026-01-26T11:10:45.462578553Z [inf]  INFO:     100.64.0.3:20598 - "POST /api/auth/login HTTP/1.1" 200 OK
+2026-01-26T11:10:53.341221849Z [inf]  INTERNAL ERROR: cannot convert dictionary update sequence element #0 to a sequence
+2026-01-26T11:10:53.341231065Z [inf]  INFO:     100.64.0.3:33028 - "GET /api/search?limit=50&constituency=kothrud HTTP/1.1" 500 Internal Server Error
+2026-01-26T11:10:53.341236869Z [err]  ERROR:    Exception in ASGI application
+2026-01-26T11:10:53.341241313Z [err]  Traceback (most recent call last):
+2026-01-26T11:10:53.341246829Z [err]    File "/app/.venv/lib/python3.13/site-packages/uvicorn/protocols/http/h11_impl.py", line 410, in run_asgi
+2026-01-26T11:10:53.341251914Z [err]      result = await app(  # type: ignore[func-returns-value]
+2026-01-26T11:10:53.341256303Z [err]               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-26T11:10:53.341263132Z [err]          self.scope, self.receive, self.send
+2026-01-26T11:10:53.341267587Z [err]          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-26T11:10:53.341273118Z [err]      )
+2026-01-26T11:10:53.341277922Z [err]      ^
+2026-01-26T11:10:53.341282265Z [err]    File "/app/.venv/lib/python3.13/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+2026-01-26T11:10:53.341286736Z [err]      return await self.app(scope, receive, send)
+2026-01-26T11:10:53.341291185Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-26T11:10:53.341295624Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/applications.py", line 1135, in __call__
+2026-01-26T11:10:53.341300304Z [err]      await super().__call__(scope, receive, send)
+2026-01-26T11:10:53.341304471Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/applications.py", line 107, in __call__
+2026-01-26T11:10:53.341309254Z [err]      await self.middleware_stack(scope, receive, send)
+2026-01-26T11:10:53.341313316Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 186, in __call__
+2026-01-26T11:10:53.341317213Z [err]      raise exc
+2026-01-26T11:10:53.345803664Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/errors.py", line 164, in __call__
+2026-01-26T11:10:53.345812183Z [err]      await self.app(scope, receive, _send)
+2026-01-26T11:10:53.345819149Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/cors.py", line 85, in __call__
+2026-01-26T11:10:53.345825173Z [err]      await self.app(scope, receive, send)
+2026-01-26T11:10:53.345831220Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+2026-01-26T11:10:53.345837481Z [err]      await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+2026-01-26T11:10:53.345843308Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-01-26T11:10:53.345848560Z [err]      raise exc
+2026-01-26T11:10:53.345852372Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-01-26T11:10:53.345856133Z [err]      await app(scope, receive, sender)
+2026-01-26T11:10:53.345859828Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+2026-01-26T11:10:53.345863719Z [err]      await self.app(scope, receive, send)
+2026-01-26T11:10:53.345867570Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 716, in __call__
+2026-01-26T11:10:53.345871325Z [err]      await self.middleware_stack(scope, receive, send)
+2026-01-26T11:10:53.345874967Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 736, in app
+2026-01-26T11:10:53.345878911Z [err]      await route.handle(scope, receive, send)
+2026-01-26T11:10:53.345884097Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/routing.py", line 290, in handle
+2026-01-26T11:10:53.345887823Z [err]      await self.app(scope, receive, send)
+2026-01-26T11:10:53.345902914Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 115, in app
+2026-01-26T11:10:53.345906687Z [err]      await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+2026-01-26T11:10:53.345910471Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+2026-01-26T11:10:53.345914954Z [err]      raise exc
+2026-01-26T11:10:53.345918774Z [err]    File "/app/.venv/lib/python3.13/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+2026-01-26T11:10:53.345926845Z [err]      await app(scope, receive, sender)
+2026-01-26T11:10:53.345930818Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 101, in app
+2026-01-26T11:10:53.345934882Z [err]      response = await f(request)
+2026-01-26T11:10:53.345939279Z [err]                 ^^^^^^^^^^^^^^^^
+2026-01-26T11:10:53.345943079Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 355, in app
+2026-01-26T11:10:53.345947017Z [err]      raw_response = await run_endpoint_function(
+2026-01-26T11:10:53.345951147Z [err]                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-26T11:10:53.345955967Z [err]      ...<3 lines>...
+2026-01-26T11:10:53.345962383Z [err]      )
+2026-01-26T11:10:53.345966852Z [err]      ^
+2026-01-26T11:10:53.345971424Z [err]    File "/app/.venv/lib/python3.13/site-packages/fastapi/routing.py", line 243, in run_endpoint_function
+2026-01-26T11:10:53.345975610Z [err]      return await dependant.call(**values)
+2026-01-26T11:10:53.345979370Z [err]             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-01-26T11:10:53.345983292Z [err]    File "/app/backend/search.py", line 65, in search_records
+2026-01-26T11:10:53.345987250Z [err]      data = dict(row)
+2026-01-26T11:10:53.345991142Z [err]  TypeError: cannot convert dictionary update sequence element #0 to a sequence
