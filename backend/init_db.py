@@ -45,7 +45,7 @@ def init_db():
             fathers_name TEXT,
             age INTEGER,
             gender TEXT,
-            constituency TEXT,
+            area TEXT,
             city TEXT,
             company TEXT,
             phone TEXT NOT NULL DEFAULT '',
@@ -68,7 +68,7 @@ def init_db():
         '''))
 
         # Indexes
-        conn.execute(text("CREATE INDEX IF NOT EXISTS idx_records_search ON records(name, city, constituency)"))
+        conn.execute(text("CREATE INDEX IF NOT EXISTS idx_records_search ON records(name, city, area)"))
         conn.execute(text("CREATE INDEX IF NOT EXISTS idx_records_phone ON records(phone)"))
 
         # Seed Admin User

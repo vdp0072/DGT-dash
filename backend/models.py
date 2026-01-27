@@ -22,7 +22,7 @@ class RecordBase(BaseModel):
     fathers_name: Optional[str] = None
     age: Optional[int] = None
     gender: Optional[str] = None
-    constituency: Optional[str] = None
+    area: Optional[str] = None
     city: Optional[str] = None
     company: Optional[str] = None
     phone: Optional[str] = None

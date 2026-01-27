@@ -17,7 +17,9 @@ def mask_text(text: Optional[str]) -> Optional[str]:
 async def search_records(
     q: Optional[str] = Query(None, min_length=1),
     city: Optional[str] = None,
-    constituency: Optional[str] = None,
+    area: Optional[str] = None,
+    sort_by: str = Query("name", regex="^(name|age)$"),
+    order: str = Query("asc", regex="^(asc|desc)$"),
     page: int = 1,
     limit: int = 50,
     current_user: UserData = Depends(get_current_user),
@@ -26,7 +28,7 @@ async def search_records(
     # Log access
     db.execute(
         text("INSERT INTO access_logs (username, action, details) VALUES (:u, :a, :d)"),
-        {"u": current_user.username, "a": "SEARCH", "d": f"q={q}, city={city}, const={constituency}"}
+        {"u": current_user.username, "a": "SEARCH", "d": f"q={q}, city={city}, area={area}, sort={sort_by} {order}"}
     )
     db.commit()
 
@@ -42,15 +44,21 @@ async def search_records(
         sql_base += " AND city LIKE :city"
         params["city"] = f"%{city}%"
         
-    if constituency:
-        sql_base += " AND constituency LIKE :con"
-        params["con"] = f"%{constituency}%"
+    if area:
+        sql_base += " AND area LIKE :area"
+        params["area"] = f"%{area}%"
+
+    # Sorting
+    sql_base += f" ORDER BY {sort_by} {order.upper()}"
 
     # Pagination
     offset = (page - 1) * limit
     
     # Count total
-    count_sql = text(f"SELECT COUNT(*) {sql_base}")
+    count_sql = text(f"SELECT COUNT(*) FROM records WHERE 1=1 {''.join(sql_base.split('WHERE 1=1')[1:]).split('ORDER BY')[0]}")
+    # Actually, simpler to just get the WHERE part
+    where_parts = sql_base.split("WHERE 1=1")[1].split("ORDER BY")[0]
+    count_sql = text(f"SELECT COUNT(*) FROM records WHERE 1=1 {where_parts}")
     total = db.execute(count_sql, params).scalar()
 
     # Execute main fetch

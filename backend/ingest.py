@@ -80,7 +80,7 @@ async def upload_file(
                 "fathers_name": get_val(row, "fathers_name"),
                 "age": int(row["age"]) if "age" in row.index and pd.notna(row["age"]) else None,
                 "gender": get_val(row, "gender"),
-                "constituency": get_val(row, "constituency"),
+                "area": get_val(row, "area") or get_val(row, "constituency"), # Fallback for old files
                 "city": get_val(row, "city"),
                 "company": get_val(row, "company"),
                 "phone": str(get_val(row, "phone") or ""),
@@ -98,13 +98,13 @@ async def upload_file(
         if valid_records:
             if is_sqlite():
                 sql = '''
-                    INSERT OR IGNORE INTO records (name, fathers_name, age, gender, constituency, city, company, phone, misc, source_file_id)
-                    VALUES (:name, :fathers_name, :age, :gender, :constituency, :city, :company, :phone, :misc, :source_file_id)
+                    INSERT OR IGNORE INTO records (name, fathers_name, age, gender, area, city, company, phone, misc, source_file_id)
+                    VALUES (:name, :fathers_name, :age, :gender, :area, :city, :company, :phone, :misc, :source_file_id)
                 '''
             else:
                 sql = '''
-                    INSERT INTO records (name, fathers_name, age, gender, constituency, city, company, phone, misc, source_file_id)
-                    VALUES (:name, :fathers_name, :age, :gender, :constituency, :city, :company, :phone, :misc, :source_file_id)
+                    INSERT INTO records (name, fathers_name, age, gender, area, city, company, phone, misc, source_file_id)
+                    VALUES (:name, :fathers_name, :age, :gender, :area, :city, :company, :phone, :misc, :source_file_id)
                     ON CONFLICT (name, phone) DO NOTHING
                 '''
             
@@ -138,3 +138,18 @@ async def upload_file(
         )
         db.commit()
         raise HTTPException(status_code=500, detail=str(e))
+@router.post("/clear-db")
+async def clear_database(
+    current_user: UserData = Depends(get_current_admin),
+    db: Session = Depends(get_db)
+):
+    try:
+        # Delete records first (linked to logs)
+        db.execute(text("DELETE FROM records"))
+        # Delete logs
+        db.execute(text("DELETE FROM ingestion_logs"))
+        db.commit()
+        return {"detail": "Database cleared successfully"}
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail=f"Failed to clear database: {str(e)}")

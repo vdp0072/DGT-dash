@@ -97,7 +97,7 @@
                                 </div>
                                 <div class="field-item">
                                     <i class="fa-solid fa-map-location-dot"></i>
-                                    <input type="text" id="q-constituency" placeholder="Constituency...">
+                                    <input type="text" id="q-area" placeholder="Area...">
                                 </div>
                                 <button type="submit" class="btn-primary">Search</button>
                             </div>
@@ -115,12 +115,14 @@
                             <table id="results-table">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
+                                        <th class="sortable" onclick="handleSort('name')">Name <i
+                                                class="fa-solid fa-sort"></i></th>
                                         <th>Father's Name</th>
-                                        <th>Age</th>
+                                        <th class="sortable" onclick="handleSort('age')">Age <i
+                                                class="fa-solid fa-sort"></i></th>
                                         <th>Gender</th>
                                         <th>City</th>
-                                        <th>Constituency</th>
+                                        <th>Area</th>
                                         <th>Company</th>
                                         <th>Phone</th>
                                         <th>Misc</th>
@@ -185,6 +187,13 @@
                                 </div>
                             </div>
                             <p id="summary-reason" class="error-text hidden"></p>
+                        </div>
+                        <div class="danger-zone">
+                            <hr>
+                            <p class="danger-text"><i class="fa-solid fa-triangle-exclamation"></i> Danger Zone</p>
+                            <button id="clear-db-btn" class="btn-danger">
+                                <i class="fa-solid fa-trash-can"></i> Clear Database
+                            </button>
                         </div>
                     </div>
                 </section>

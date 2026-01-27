@@ -3,6 +3,8 @@ const API_URL = window.location.origin + "/api";
 // --- State ---
 let currentUser = null;
 let currentToken = localStorage.getItem('dgt_token');
+let currentSort = 'name';
+let currentOrder = 'asc';
 
 // --- Elements ---
 const appState = {
@@ -133,12 +135,33 @@ document.getElementById('search-form').addEventListener('submit', async (e) => {
     e.preventDefault();
     const q = document.getElementById('q-general').value;
     const city = document.getElementById('q-city').value;
-    const con = document.getElementById('q-constituency').value;
+    const area = document.getElementById('q-area').value;
 
-    await performSearch(q, city, con);
+    await performSearch(q, city, area);
 });
 
-async function performSearch(q, city, con) {
+window.handleSort = function (field) {
+    if (currentSort === field) {
+        currentOrder = currentOrder === 'asc' ? 'desc' : 'asc';
+    } else {
+        currentSort = field;
+        currentOrder = 'asc';
+    }
+
+    // Update icons visually
+    document.querySelectorAll('th.sortable i').forEach(i => i.className = 'fa-solid fa-sort');
+    const activeHeader = document.querySelector(`th[onclick="handleSort('${field}')"]`);
+    const icon = activeHeader.querySelector('i');
+    icon.className = currentOrder === 'asc' ? 'fa-solid fa-sort-up' : 'fa-solid fa-sort-down';
+
+    // Re-run current search
+    const q = document.getElementById('q-general').value;
+    const city = document.getElementById('q-city').value;
+    const area = document.getElementById('q-area').value;
+    performSearch(q, city, area);
+}
+
+async function performSearch(q, city, area) {
     const loading = document.getElementById('loading-indicator');
     const tableBody = document.getElementById('results-body');
     const noResults = document.getElementById('no-results');
@@ -150,10 +173,14 @@ async function performSearch(q, city, con) {
     meta.classList.add('hidden');
 
     try {
-        const params = new URLSearchParams({ limit: 50 });
+        const params = new URLSearchParams({
+            limit: 50,
+            sort_by: currentSort,
+            order: currentOrder
+        });
         if (q) params.append('q', q);
         if (city) params.append('city', city);
-        if (con) params.append('constituency', con);
+        if (area) params.append('area', area);
 
         const res = await fetch(`${API_URL}/search?${params.toString()}`, {
             headers: { 'Authorization': `Bearer ${currentToken}` }
@@ -179,7 +206,7 @@ async function performSearch(q, city, con) {
                 <td>${rec.age || '-'}</td>
                 <td>${rec.gender || '-'}</td>
                 <td>${rec.city || '-'}</td>
-                <td>${rec.constituency || '-'}</td>
+                <td>${rec.area || '-'}</td>
                 <td>${rec.company || '-'}</td>
                 <td>${rec.phone || '-'}</td>
                 <td>${rec.misc || '-'}</td>
@@ -261,6 +288,35 @@ document.getElementById('upload-btn').addEventListener('click', async () => {
         progress.classList.add('hidden');
         alert("Upload failed: " + err.message);
         btn.disabled = false;
+    }
+});
+
+// --- Clear Database Logic ---
+document.getElementById('clear-db-btn').addEventListener('click', async () => {
+    const confirmation = prompt("This will wipe ALL records and logs. Type 'clear' to proceed:");
+
+    if (confirmation === 'clear') {
+        try {
+            const res = await fetch(`${API_URL}/admin/clear-db`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${currentToken}` }
+            });
+
+            if (!res.ok) {
+                const data = await res.json();
+                throw new Error(data.detail || "Failed to clear database");
+            }
+
+            alert("Database cleared successfully!");
+            // Optionally refresh view or search results
+            if (!appState.pages.search.classList.contains('hidden')) {
+                performSearch('', '', ''); // Clear results table
+            }
+        } catch (err) {
+            alert("Error: " + err.message);
+        }
+    } else if (confirmation !== null) {
+        alert("Confirmation failed. Database not cleared.");
     }
 });
 
