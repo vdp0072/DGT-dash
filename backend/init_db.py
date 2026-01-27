@@ -1,5 +1,5 @@
 from sqlalchemy import text
-from backend.database import engine
+from backend.database import engine, is_sqlite
 import bcrypt
 
 def get_password_hash(password):
@@ -9,10 +9,12 @@ def init_db():
     print(f"Initializing database schema...")
 
     with engine.connect() as conn:
+        pk_type = "INTEGER PRIMARY KEY" if is_sqlite() else "SERIAL PRIMARY KEY"
+        
         # Users Table
-        conn.execute(text('''
+        conn.execute(text(f'''
         CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY,
+            id {pk_type},
             username TEXT UNIQUE NOT NULL,
             password_hash TEXT NOT NULL,
             role TEXT NOT NULL DEFAULT 'user',
@@ -21,9 +23,9 @@ def init_db():
         '''))
 
         # Ingestion Logs Table - now linked by username for robustness
-        conn.execute(text('''
+        conn.execute(text(f'''
         CREATE TABLE IF NOT EXISTS ingestion_logs (
-            id INTEGER PRIMARY KEY,
+            id {pk_type},
             filename TEXT NOT NULL,
             uploaded_by_username TEXT NOT NULL,
             upload_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -36,9 +38,9 @@ def init_db():
         '''))
 
         # Records Table
-        conn.execute(text('''
+        conn.execute(text(f'''
         CREATE TABLE IF NOT EXISTS records (
-            id INTEGER PRIMARY KEY,
+            id {pk_type},
             name TEXT NOT NULL,
             fathers_name TEXT,
             age INTEGER,
@@ -55,9 +57,9 @@ def init_db():
         '''))
         
         # Access Logs Table - now linked by username for robustness
-        conn.execute(text('''
+        conn.execute(text(f'''
         CREATE TABLE IF NOT EXISTS access_logs (
-            id INTEGER PRIMARY KEY,
+            id {pk_type},
             username TEXT NOT NULL,
             action TEXT NOT NULL,
             details TEXT,
