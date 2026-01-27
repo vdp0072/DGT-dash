@@ -71,19 +71,31 @@ def init_db():
         conn.execute(text("CREATE INDEX IF NOT EXISTS idx_records_search ON records(name, city, area)"))
         conn.execute(text("CREATE INDEX IF NOT EXISTS idx_records_phone ON records(phone)"))
 
-        # Seed Admin User
-        admin_password = get_password_hash("admin123")
-        try:
-            result = conn.execute(text("SELECT 1 FROM users WHERE username = 'admin'")).fetchone()
-            if not result:
-                conn.execute(text("INSERT INTO users (username, password_hash, role) VALUES (:u, :p, :r)"),
-                            {"u": "admin", "p": admin_password, "r": "admin"})
-                conn.commit()
-                print("Seeded admin user (admin/admin123)")
-            else:
-                print("Admin user already exists")
-        except Exception as e:
-            print(f"Seeding error: {e}")
+        # Seed System Users
+        default_users = [
+            {"u": "admin", "p": "admin123", "r": "admin"},
+            {"u": "demo", "p": "demo123", "r": "user"},
+            {"u": "superuser", "p": "super123", "r": "superuser"}
+        ]
+        
+        for user_data in default_users:
+            try:
+                result = conn.execute(
+                    text("SELECT 1 FROM users WHERE username = :u"), 
+                    {"u": user_data["u"]}
+                ).fetchone()
+                
+                if not result:
+                    password_hash = get_password_hash(user_data["p"])
+                    conn.execute(
+                        text("INSERT INTO users (username, password_hash, role) VALUES (:u, :p, :r)"),
+                        {"u": user_data["u"], "p": password_hash, "r": user_data["r"]}
+                    )
+                    print(f"Seeded user: {user_data['u']} ({user_data['r']})")
+                else:
+                    print(f"User already exists: {user_data['u']}")
+            except Exception as e:
+                print(f"Error seeding user {user_data['u']}: {e}")
 
         conn.commit()
     print("Database initialization complete.")
