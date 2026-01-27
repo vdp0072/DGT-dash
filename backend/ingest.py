@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import text
 from backend.models import IngestionSummary, UserData
 from backend.auth import get_current_admin
-from backend.database import get_db, is_sqlite
+from backend.database import get_db, engine_name
 
 router = APIRouter()
 
@@ -32,7 +32,7 @@ async def upload_file(
 
     # 2. Log Entry
     # Create log entry
-    if is_sqlite():
+    if engine_name == "sqlite":
         db.execute(
             text("INSERT INTO ingestion_logs (filename, uploaded_by_username, total_rows, inserted_rows, rejected_rows) VALUES (:f, :u, 0, 0, 0)"),
             {"f": filename, "u": current_user.username}
@@ -96,7 +96,7 @@ async def upload_file(
 
         # 5. Bulk Insert
         if valid_records:
-            if is_sqlite():
+            if engine_name == "sqlite":
                 sql = '''
                     INSERT OR IGNORE INTO records (name, fathers_name, age, gender, area, city, company, phone, misc, source_file_id)
                     VALUES (:name, :fathers_name, :age, :gender, :area, :city, :company, :phone, :misc, :source_file_id)

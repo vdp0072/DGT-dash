@@ -12,11 +12,18 @@ if DATABASE_URL.startswith("postgres://"):
 
 # Mask URL for safe logging
 masked_url = DATABASE_URL.split("@")[-1] if "@" in DATABASE_URL else DATABASE_URL
-print(f"🔗 Database connection: {masked_url}")
-
 connect_args = {"check_same_thread": False} if DATABASE_URL.startswith("sqlite") else {}
 
 engine = create_engine(DATABASE_URL, connect_args=connect_args, pool_pre_ping=True)
+engine_name = engine.dialect.name
+
+if engine_name == "sqlite":
+    print(f"⚠️  ACTIVE DATABASE: SQLite (EPHEMERAL — DATA WILL NOT PERSIST)")
+    print(f"🔗 Database connection: {masked_url}")
+else:
+    print(f"✅ ACTIVE DATABASE: PostgreSQL (PERSISTENT)")
+    print(f"🔗 Database connection: {masked_url}")
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
@@ -27,5 +34,5 @@ def get_db():
     finally:
         db.close()
 
-def is_sqlite():
-    return DATABASE_URL.startswith("sqlite")
+
+# engine_name is now the primary way to check database dialect.

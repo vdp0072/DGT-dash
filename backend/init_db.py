@@ -1,15 +1,19 @@
 from sqlalchemy import text
-from backend.database import engine, is_sqlite
+from backend.database import engine, engine_name
 import bcrypt
 
 def get_password_hash(password):
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
 def init_db():
-    print(f"Initializing database schema...")
+    """
+    Initializes the database schema and seeds default users.
+    GUARDED: No drop_all() or destructive actions allowed.
+    """
+    print(f"Initializing database (Mode: {engine_name})...")
 
     with engine.connect() as conn:
-        pk_type = "INTEGER PRIMARY KEY" if is_sqlite() else "SERIAL PRIMARY KEY"
+        pk_type = "INTEGER PRIMARY KEY" if engine_name == "sqlite" else "SERIAL PRIMARY KEY"
         
         # Users Table
         conn.execute(text(f'''
