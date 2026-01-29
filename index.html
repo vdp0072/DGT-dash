@@ -55,6 +55,10 @@
                         <i class="fa-solid fa-upload"></i>
                         <span>Ingest Data</span>
                     </li>
+                    <li id="admin-lookup-link" class="hidden" onclick="showPage('lookup')">
+                        <i class="fa-solid fa-house-chimney-user"></i>
+                        <span>Phone Lookup</span>
+                    </li>
                     <li id="admin-logs-link" class="hidden" onclick="showPage('logs')">
                         <i class="fa-solid fa-list-check"></i>
                         <span>Audit Logs</span>
@@ -194,6 +198,39 @@
                             <button id="clear-db-btn" class="btn-danger">
                                 <i class="fa-solid fa-trash-can"></i> Clear Database
                             </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Phone Lookup Page (Admin) -->
+                <section id="page-lookup" class="page-section hidden">
+                    <div class="page-header">
+                        <h2>Phone Number Lookup</h2>
+                        <p>Real-time cross-provider intelligence for any mobile number.</p>
+                    </div>
+
+                    <div class="search-bar glass-card">
+                        <form id="lookup-form">
+                            <div class="search-inputs lookup-grid">
+                                <div class="field-item">
+                                    <i class="fa-solid fa-phone-volume"></i>
+                                    <input type="text" id="lookup-phone"
+                                        placeholder="Enter phone number (e.g. 9876543210)" required>
+                                </div>
+                                <button type="submit" class="btn-primary">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <span>Run Intelligence</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="lookup-results-area">
+                        <div id="lookup-loading" class="hidden">
+                            <div class="spinner"></div> Performing cross-provider lookup...
+                        </div>
+                        <div id="lookup-content">
+                            <!-- Results go here -->
                         </div>
                     </div>
                 </section>

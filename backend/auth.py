@@ -57,7 +57,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme)) -> UserData:
     return token_data
 
 async def get_current_admin(current_user: UserData = Depends(get_current_user)):
-    if current_user.role != "admin":
+    if current_user.role not in ["admin", "superuser"]:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Not enough permissions"

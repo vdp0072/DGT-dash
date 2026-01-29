@@ -442,6 +442,79 @@ th.sortable i {
     color: white;
 }
 
+/* Phone Lookup Page */
+.lookup-grid {
+    grid-template-columns: 1fr auto !important;
+}
+
+#lookup-results-area {
+    margin-top: 2rem;
+}
+
+.lookup-results-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.finding-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: transform 0.2s;
+    backdrop-filter: blur(12px);
+}
+
+.finding-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+.finding-card h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.05rem;
+}
+
+.finding-content {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-all;
+    color: var(--text-main);
+}
+
+.finding-card.error {
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+.finding-card.error h4 {
+    color: var(--error);
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255,255,255,0.1);
+    border-left: 2px solid var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     #dashboard-view {
@@ -470,5 +543,9 @@ th.sortable i {
 
     .table-container {
         overflow-x: auto;
+    }
+
+    .lookup-grid {
+        grid-template-columns: 1fr !important;
     }
 }

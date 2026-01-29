@@ -15,6 +15,7 @@ const appState = {
     pages: {
         search: document.getElementById('page-search'),
         ingest: document.getElementById('page-ingest'),
+        lookup: document.getElementById('page-lookup'),
         logs: document.getElementById('page-logs')
     }
 };
@@ -22,8 +23,6 @@ const appState = {
 // --- Init ---
 async function init() {
     if (currentToken) {
-        // Here we ideally validate the token or decode it
-        // For simplicity, we decode locally to check role
         try {
             const payload = parseJwt(currentToken);
             if (payload.exp * 1000 < Date.now()) {
@@ -97,16 +96,17 @@ function showDashboard() {
     appState.views.auth.classList.add('hidden');
     appState.views.dashboard.classList.remove('hidden');
 
-    // Update Sidebar Info
     document.getElementById('display-username').textContent = currentUser.username;
     document.getElementById('display-role').textContent = currentUser.role.toUpperCase();
 
-    // Permissions - Only show admin functions for the actual admin role
-    if (currentUser.role === 'admin') {
+    // Permissions
+    if (currentUser.role === 'admin' || currentUser.role === 'superuser') {
         document.getElementById('admin-ingest-link').classList.remove('hidden');
+        document.getElementById('admin-lookup-link').classList.remove('hidden');
         document.getElementById('admin-logs-link').classList.remove('hidden');
     } else {
         document.getElementById('admin-ingest-link').classList.add('hidden');
+        document.getElementById('admin-lookup-link').classList.add('hidden');
         document.getElementById('admin-logs-link').classList.add('hidden');
     }
 
@@ -114,17 +114,13 @@ function showDashboard() {
 }
 
 window.showPage = function (pageId) {
-    // Hide all pages
     Object.values(appState.pages).forEach(p => p.classList.add('hidden'));
-
-    // Deactivate nav links
     document.querySelectorAll('.nav-links li').forEach(li => li.classList.remove('active'));
 
-    // Show target
     appState.pages[pageId].classList.remove('hidden');
 
-    // Highlight Nav
     if (pageId === 'ingest') document.getElementById('admin-ingest-link').classList.add('active');
+    else if (pageId === 'lookup') document.getElementById('admin-lookup-link').classList.add('active');
     else if (pageId === 'logs') document.getElementById('admin-logs-link').classList.add('active');
     else document.querySelector('.nav-links li:first-child').classList.add('active');
 }
@@ -136,7 +132,6 @@ document.getElementById('search-form').addEventListener('submit', async (e) => {
     const q = document.getElementById('q-general').value;
     const city = document.getElementById('q-city').value;
     const area = document.getElementById('q-area').value;
-
     await performSearch(q, city, area);
 });
 
@@ -148,13 +143,11 @@ window.handleSort = function (field) {
         currentOrder = 'asc';
     }
 
-    // Update icons visually
     document.querySelectorAll('th.sortable i').forEach(i => i.className = 'fa-solid fa-sort');
     const activeHeader = document.querySelector(`th[onclick="handleSort('${field}')"]`);
     const icon = activeHeader.querySelector('i');
     icon.className = currentOrder === 'asc' ? 'fa-solid fa-sort-up' : 'fa-solid fa-sort-down';
 
-    // Re-run current search
     const q = document.getElementById('q-general').value;
     const city = document.getElementById('q-city').value;
     const area = document.getElementById('q-area').value;
@@ -187,7 +180,6 @@ async function performSearch(q, city, area) {
         });
 
         const data = await res.json();
-
         loading.classList.add('hidden');
 
         if (data.results.length === 0) {
@@ -220,25 +212,100 @@ async function performSearch(q, city, area) {
     }
 }
 
+// --- Phone Lookup Logic ---
+document.getElementById('lookup-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const phoneInput = document.getElementById('lookup-phone').value.trim();
+    if (!phoneInput) return;
+
+    // Apply 91 prefix if not present
+    let phone = phoneInput.replace(/\D/g, ''); // strip non-digits
+    if (!phone.startsWith('91')) {
+        phone = '91' + phone;
+    }
+
+    const loading = document.getElementById('lookup-loading');
+    const content = document.getElementById('lookup-content');
+
+    loading.classList.remove('hidden');
+    content.innerHTML = '';
+
+    try {
+        const res = await fetch(`${API_URL}/lookup`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${currentToken}`
+            },
+            body: JSON.stringify({ phone })
+        });
+
+        if (!res.ok) throw new Error('Lookup failed or unauthorized');
+
+        const data = await res.json();
+        loading.classList.add('hidden');
+        renderLookupResults(data);
+
+    } catch (err) {
+        loading.classList.add('hidden');
+        content.innerHTML = `<div class="error-msg">Error: ${err.message}</div>`;
+    }
+});
+
+function renderLookupResults(data) {
+    const content = document.getElementById('lookup-content');
+    const container = document.createElement('div');
+    container.className = 'lookup-results-container';
+
+    // Findings
+    for (const [provider, result] of Object.entries(data.findings)) {
+        const card = document.createElement('div');
+        card.className = 'finding-card';
+        card.innerHTML = `
+            <h4><i class="fa-solid fa-circle-check"></i> ${provider}</h4>
+            <div class="finding-content">${result}</div>
+        `;
+        container.appendChild(card);
+    }
+
+    // Errors
+    for (const [provider, err] of Object.entries(data.errors)) {
+        const card = document.createElement('div');
+        card.className = 'finding-card error';
+        card.innerHTML = `
+            <h4><i class="fa-solid fa-circle-exclamation"></i> ${provider}</h4>
+            <div class="finding-content">${err}</div>
+        `;
+        container.appendChild(card);
+    }
+
+    if (Object.keys(data.findings).length === 0 && Object.keys(data.errors).length === 0) {
+        content.innerHTML = `<div class="empty-state"><p>No intelligence found for this number.</p></div>`;
+    } else {
+        content.appendChild(container);
+    }
+}
+
 // --- Ingestion Logic ---
 const dropZone = document.getElementById('drop-zone');
 const fileInput = document.getElementById('file-input');
 let selectedFile = null;
 
-dropZone.addEventListener('click', () => fileInput.click());
+if (dropZone) dropZone.addEventListener('click', () => fileInput.click());
+if (fileInput) fileInput.addEventListener('change', (e) => handleFileSelect(e.target.files[0]));
 
-fileInput.addEventListener('change', (e) => handleFileSelect(e.target.files[0]));
-
-dropZone.addEventListener('dragover', (e) => {
-    e.preventDefault();
-    dropZone.classList.add('dragover');
-});
-dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
-dropZone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    dropZone.classList.remove('dragover');
-    if (e.dataTransfer.files.length) handleFileSelect(e.dataTransfer.files[0]);
-});
+if (dropZone) {
+    dropZone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
+    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+        if (e.dataTransfer.files.length) handleFileSelect(e.dataTransfer.files[0]);
+    });
+}
 
 function handleFileSelect(file) {
     if (!file) return;
@@ -308,9 +375,8 @@ document.getElementById('clear-db-btn').addEventListener('click', async () => {
             }
 
             alert("Database cleared successfully!");
-            // Optionally refresh view or search results
             if (!appState.pages.search.classList.contains('hidden')) {
-                performSearch('', '', ''); // Clear results table
+                performSearch('', '', '');
             }
         } catch (err) {
             alert("Error: " + err.message);
