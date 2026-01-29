@@ -22,7 +22,21 @@ body {
     background-color: var(--bg-dark);
     color: var(--text-main);
     height: 100vh;
+    height: 100dvh;
+    /* Dynamic viewport height for mobile */
+    width: 100vw;
     overflow: hidden;
+}
+
+#app {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.view {
+    height: 100%;
+    width: 100%;
 }
 
 /* Utilities */
@@ -92,6 +106,7 @@ body {
     flex-direction: column;
     padding: 1.5rem;
     z-index: 100;
+    flex-shrink: 0;
 }
 
 .nav-header {
