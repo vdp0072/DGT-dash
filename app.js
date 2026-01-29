@@ -68,6 +68,8 @@ document.getElementById('login-form').addEventListener('submit', async (e) => {
 });
 
 document.getElementById('logout-btn').addEventListener('click', logout);
+const mobileLogout = document.getElementById('logout-btn-mobile');
+if (mobileLogout) mobileLogout.addEventListener('click', logout);
 
 function logout() {
     currentToken = null;

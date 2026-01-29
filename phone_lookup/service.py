@@ -60,8 +60,8 @@ def lookup_single(phone: str) -> Tuple[Dict[str, str], Dict[str, str]]:
     ]
     
     # Global budget 10s (8-10s as per user suggestion)
-    # Give each provider a 2s cap to stay within budget
-    prov_timeout = 2.0 
+    # Give each provider more time for testing
+    prov_timeout = 5.0 
     
     for name, func, args in providers:
         status, result = run_with_timeout(func, args, prov_timeout)
