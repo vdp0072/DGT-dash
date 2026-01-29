@@ -101,6 +101,12 @@ function showDashboard() {
     document.getElementById('display-username').textContent = currentUser.username;
     document.getElementById('display-role').textContent = currentUser.role.toUpperCase();
 
+    // Update Mobile Header Username
+    const mobileUsername = document.getElementById('mobile-username');
+    if (mobileUsername) {
+        mobileUsername.textContent = currentUser.username;
+    }
+
     // Permissions
     if (currentUser.role === 'admin' || currentUser.role === 'superuser') {
         document.getElementById('admin-ingest-link').classList.remove('hidden');

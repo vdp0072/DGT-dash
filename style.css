@@ -461,16 +461,32 @@ th.sortable {
     display: none;
     align-items: center;
     justify-content: space-between;
-    padding: 1rem 1.5rem;
-    background: var(--bg-card);
+    padding: 0.8rem 1.2rem;
+    background: rgba(15, 23, 42, 0.95);
     border-bottom: 1px solid var(--border);
     backdrop-filter: blur(20px);
-    z-index: 101;
+    z-index: 200;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
 }
 
 .mobile-header .nav-header {
     margin-bottom: 0;
     font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mobile-user {
+    font-size: 0.8rem;
+    color: var(--primary);
+    background: rgba(59, 130, 246, 0.1);
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    margin-left: 0.5rem;
 }
 
 @media (max-width: 768px) {
@@ -533,6 +549,8 @@ th.sortable {
 
     .main-content {
         padding: 1.5rem;
+        padding-top: 80px;
+        /* Space for fixed top header */
         padding-bottom: 80px;
         /* Space for bottom nav */
     }
