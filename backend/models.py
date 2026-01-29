@@ -1,5 +1,5 @@
 from pydantic import BaseModel, EmailStr, Field
-from typing import Optional, List, Any
+from typing import Optional, List, Any, Dict
 from datetime import datetime
 
 # --- Auth Models ---
@@ -51,3 +51,12 @@ class IngestionSummary(BaseModel):
     rejected_rows: int
     rejection_reason: Optional[str] = None
     log_id: int
+
+# --- Lookup Models ---
+class LookupRequest(BaseModel):
+    phone: str
+
+class LookupResponse(BaseModel):
+    phone: str
+    findings: Dict[str, str]
+    errors: Dict[str, str] = {}

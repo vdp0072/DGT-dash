@@ -7,3 +7,7 @@ bcrypt
 sqlalchemy
 psycopg2-binary
 openpyxl
+httpx[http2]
+requests
+colorama
+cryptography
