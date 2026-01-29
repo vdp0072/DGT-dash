@@ -81,15 +81,67 @@ body {
 /* Auth View */
 .login-container {
     height: 100vh;
+    width: 100vw;
     display: flex;
     align-items: center;
     justify-content: center;
     background: radial-gradient(circle at top right, #1e3a8a 0%, var(--bg-dark) 40%);
+    padding: 1rem;
 }
 
 .login-card {
     width: 100%;
-    max-width: 400px;
+    max-width: 520px;
+    /* Increased from 400px */
+    padding: 3rem;
+    /* Increased from 2rem */
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.logo-area {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo-icon {
+    font-size: 3rem;
+    /* Larger icon */
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+    font-size: 1rem;
+    /* Larger label */
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    /* Larger padding */
+    background: rgba(255, 255, 255, 0.03);
+    /* Explicit dark glass */
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 /* Dashboard Layout */
