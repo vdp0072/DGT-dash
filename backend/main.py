@@ -57,3 +57,9 @@ async def get_style():
 async def get_app():
     with open("app.js", "r", encoding="utf-8") as f:
         return HTMLResponse(content=f.read(), media_type="application/javascript")
+
+@app.get("/ingest.css")
+async def get_ingest_css():
+    with open("ingest.css", "r", encoding="utf-8") as f:
+        return HTMLResponse(content=f.read(), media_type="text/css")
+
