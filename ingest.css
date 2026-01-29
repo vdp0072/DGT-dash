@@ -1,0 +1,80 @@
+/* Ingest Page — clean overrides (separate file to avoid corrupted main stylesheet) */
+:root {
+  --card-padding: 3rem;
+  --card-max-width: 1200px;
+  --icon-large: 6rem;
+  --input-padding: 1rem 1.2rem;
+}
+
+/* Semantic larger card modifier for pages that need stronger presence */
+.glass-card--large {
+  max-width: var(--card-max-width);
+  margin: 0 auto;
+  padding: var(--card-padding);
+}
+
+.glass-card--large .btn-primary {
+  padding: 0.9rem 1.6rem;
+  font-size: 1rem;
+}
+
+.glass-card--large .field-item input {
+  padding: var(--input-padding);
+  font-size: 1rem;
+}
+
+/* Ingest specific layout */
+.ingest-container .drop-zone {
+  border: 2px dashed var(--border);
+  border-radius: 16px;
+  padding: 6rem 4rem;
+  text-align: center;
+  background: rgba(0,0,0,0.2);
+  transition: all 0.2s;
+}
+
+.ingest-container .drop-zone:hover,
+.ingest-container .drop-zone.dragover {
+  border-color: var(--primary);
+  background: rgba(59,130,246,0.05);
+  transform: scale(1.01);
+}
+
+.cloud-icon {
+  font-size: var(--icon-large);
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+}
+
+.drop-zone h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.drop-zone p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.ingest-actions { margin-top: 2.5rem; display:flex; justify-content:flex-end; }
+
+/* Make sure stats and summary are comfortably sized */
+.summary-card h4 { margin-bottom: 1rem; font-size: 1.25rem; }
+.stats-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 1rem; }
+.stat-item { padding: 1.5rem; border-radius: 12px; background: var(--bg-dark); text-align:center; }
+.stat-item b { display:block; font-size: 1.8rem; font-weight:700; }
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .glass-card--large { padding: 2rem; }
+  .ingest-container .drop-zone { padding: 4rem 2rem; }
+  .cloud-icon { font-size: 4.5rem; }
+}
+
+@media (max-width: 480px) {
+  .glass-card--large { padding: 1.5rem; }
+  .ingest-container .drop-zone { padding: 2rem 1rem; }
+  .cloud-icon { font-size: 3.5rem; }
+  .stats-grid { grid-template-columns: 1fr; }
+}
