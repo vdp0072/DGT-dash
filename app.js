@@ -254,36 +254,106 @@ document.getElementById('lookup-form').addEventListener('submit', async (e) => {
 
 function renderLookupResults(data) {
     const content = document.getElementById('lookup-content');
-    const container = document.createElement('div');
-    container.className = 'lookup-results-container';
 
-    // Findings
-    for (const [provider, result] of Object.entries(data.findings)) {
-        const card = document.createElement('div');
-        card.className = 'finding-card';
-        card.innerHTML = `
-            <h4><i class="fa-solid fa-circle-check"></i> ${provider}</h4>
-            <div class="finding-content">${result}</div>
-        `;
-        container.appendChild(card);
-    }
+    // Helper to extract values from provider strings using regex
+    const findValue = (regex, text) => {
+        if (!text) return null;
+        const match = text.match(regex);
+        return match ? match[1].trim() : null;
+    };
 
-    // Errors
-    for (const [provider, err] of Object.entries(data.errors)) {
-        const card = document.createElement('div');
-        card.className = 'finding-card error';
-        card.innerHTML = `
-            <h4><i class="fa-solid fa-circle-exclamation"></i> ${provider}</h4>
-            <div class="finding-content">${err}</div>
-        `;
-        container.appendChild(card);
-    }
+    let consolidated = {
+        name: null,
+        phone: data.phone.startsWith('+') ? data.phone : '+' + data.phone,
+        location: [],
+        carrier: null,
+        spamStatus: null,
+        links: []
+    };
 
-    if (Object.keys(data.findings).length === 0 && Object.keys(data.errors).length === 0) {
-        content.innerHTML = `<div class="empty-state"><p>No intelligence found for this number.</p></div>`;
+    const providers = data.findings;
+
+    // 1. Name Priority
+    consolidated.name = findValue(/\[\+\] Found Name:\s*(.*)/, providers['Truecaller'])
+        || findValue(/\[\+\] Found Name:\s*(.*)/, providers['Eyecon_Name'])
+        || findValue(/\[\+\] Found Name \(DataBase 2\):\s*(.*)/, providers['Sync_Me'])
+        || findValue(/\[\+\] Found Name:\s*(.*)/, providers['CallApp'])
+        || findValue(/\[\+\] Found Name \(DataBase 1\):\s*(.*)/, providers['CallerID'])
+        || "Unknown Name";
+
+    // 2. Location
+    const city = findValue(/\[\+\] Found City:\s*(.*)/, providers['Truecaller']);
+    const area = findValue(/\[\+\] Found Area:\s*(.*)/, providers['Truecaller']);
+    const addr = findValue(/\[\+\] Found Address \(DataBase 1\):\s*(.*)/, providers['CallerID'])
+        || findValue(/\[\+\] Found Street:\s*(.*)/, providers['CallApp']);
+    const country = findValue(/\[\+\] Found Country \(DataBase 2\):\s*(.*)/, providers['Sync_Me']);
+    const loc = findValue(/\[\+\] Found Location \(DataBase 1\):\s*(.*)/, providers['CallerID']);
+
+    if (loc) consolidated.location.push(loc);
+    if (addr && !consolidated.location.includes(addr)) consolidated.location.push(addr);
+    if (area && !consolidated.location.includes(area)) consolidated.location.push(area);
+    if (city && !consolidated.location.includes(city)) consolidated.location.push(city);
+    if (country && !consolidated.location.includes(country)) consolidated.location.push(country);
+
+    // 3. Carrier
+    consolidated.carrier = findValue(/\[\+\] Found Carreir:\s*(.*)/, providers['Truecaller'])
+        || findValue(/\[\+\] Found networks first name \(DataBase 2\):\s*(.*)/, providers['Sync_Me']);
+
+    // 4. Spam
+    const isTrueSpammer = providers['Truecaller']?.includes("[+] Is Spammer: True");
+    const syncmeSpam = findValue(/\[\+\] Found Spam Count \(DataBase 2\):\s*(.*)/, providers['Sync_Me']);
+    const calleridSpam = findValue(/\[\+\] Found Report Count \(DataBase 1\):\s*(.*)/, providers['CallerID']);
+
+    if (isTrueSpammer || syncmeSpam || (calleridSpam && calleridSpam !== '0')) {
+        const count = syncmeSpam || calleridSpam || "High";
+        consolidated.spamStatus = `⚠️ Reported (${count} reports)`;
     } else {
-        content.appendChild(container);
+        consolidated.spamStatus = "✅ Clean / No Reports";
     }
+
+    // 5. Links
+    const pic = findValue(/\[\+\] Found Picture Link:\s*(.*)/, providers['Truecaller'])
+        || findValue(/\[\+\] Found Picture:\s*(.*)/, providers['CallApp'])
+        || findValue(/\[\+\] Picture Link Found:\s*(.*)/, providers['Eyecon_Pic']);
+    const fb = findValue(/\[\+\] Found Facebook Profile Link:\s*(.*)/, providers['CallApp'])
+        || findValue(/\[\+\] Facebook Profile Link Found:\s*(.*)/, providers['Eyecon_Pic']);
+    const web = findValue(/\[\+\] Found Website:\s*(.*)/, providers['CallApp'])
+        || findValue(/\[\+\] Found Business Url:\s*(.*)/, providers['CallApp']);
+
+    if (pic) consolidated.links.push({ label: 'Profile Photo', url: pic });
+    if (fb) consolidated.links.push({ label: 'Facebook Profile', url: fb });
+    if (web) consolidated.links.push({ label: 'Website', url: web });
+
+    // Render the Card
+    const card = document.createElement('div');
+    card.className = 'result-card-centered glass-card';
+    card.innerHTML = `
+        <div class="result-header">
+            <i class="fa-solid fa-phone-slash"></i>
+            <h3>📞 Phone Lookup Result</h3>
+        </div>
+        <div class="result-body">
+            <div class="info-row"><strong>Name:</strong> <span>${consolidated.name}</span></div>
+            <div class="info-row"><strong>Phone:</strong> <span>${consolidated.phone}</span></div>
+            <div class="info-row"><strong>Location:</strong> <span>${consolidated.location.join(', ') || 'Not available'}</span></div>
+            <div class="info-row"><strong>Carrier:</strong> <span>${consolidated.carrier || 'Unknown'}</span></div>
+            
+            <div class="spam-box ${consolidated.spamStatus.includes('⚠️') ? 'spam-high' : 'spam-low'}">
+                ${consolidated.spamStatus}
+            </div>
+
+            ${consolidated.links.length > 0 ? `
+                <div class="links-box">
+                    <strong>Links:</strong>
+                    <ul>
+                        ${consolidated.links.map(l => `<li><a href="${l.url}" target="_blank">• ${l.label}</a></li>`).join('')}
+                    </ul>
+                </div>
+            ` : ''}
+        </div>
+    `;
+
+    content.appendChild(card);
 }
 
 // --- Ingestion Logic ---

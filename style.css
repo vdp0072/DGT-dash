@@ -437,6 +437,101 @@ th.sortable i {
     transition: all 0.2s;
 }
 
+/* Consolidated Result Card */
+.result-card-centered {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 1) 0%, rgba(15, 23, 42, 0.8) 100%);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.result-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+}
+
+.result-header h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.result-header i {
+    font-size: 1.8rem;
+    color: var(--primary);
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.info-row strong {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.info-row span {
+    color: var(--text-main);
+    font-weight: 600;
+}
+
+.spam-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.spam-high {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: #fca5a5;
+}
+
+.spam-low {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #6ee7b7;
+}
+
+.links-box {
+    margin-top: 2rem;
+}
+
+.links-box strong {
+    display: block;
+    margin-bottom: 0.8rem;
+    color: var(--text-muted);
+}
+
+.links-box ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.links-box a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.links-box a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
 .btn-danger:hover {
     background: var(--error);
     color: white;
@@ -501,7 +596,7 @@ th.sortable i {
 .spinner {
     width: 20px;
     height: 20px;
-    border: 2px solid rgba(255,255,255,0.1);
+    border: 2px solid rgba(255, 255, 255, 0.1);
     border-left: 2px solid var(--primary);
     border-radius: 50%;
     animation: spin 1s linear infinite;
@@ -511,8 +606,13 @@ th.sortable i {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 /* Responsive */
